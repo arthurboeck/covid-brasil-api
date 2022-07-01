@@ -4,7 +4,9 @@ import br.com.covid.brazil.api.dto.ErrorApiDTO;
 import org.hibernate.validator.internal.engine.ConstraintViolationImpl;
 import org.hibernate.validator.internal.engine.path.PathImpl;
 import org.junit.jupiter.api.Test;
-import org.springframework.boot.test.mock.mockito.SpyBean;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.Spy;
+import org.mockito.junit.jupiter.MockitoExtension;
 
 import javax.validation.ConstraintViolation;
 import javax.validation.ConstraintViolationException;
@@ -15,9 +17,10 @@ import java.util.Set;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
+@ExtendWith(MockitoExtension.class)
 class BasicExceptionHandlerTest {
 
-    @SpyBean
+    @Spy
     BasicExceptionHandler basicExceptionHandler;
 
     private static final String CONSTRAINT_VIOLATION_MSG = "javax.validation.ConstraintViolationException: textToChatBot.message: Message can't be null or empty";

@@ -31,5 +31,5 @@ spring:
 
 logging:
   level:
-    root: DEBUG
-    org.springframework: DEBUG
+    root: INFO
+    org.springframework: INFO
