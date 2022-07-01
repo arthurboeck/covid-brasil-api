@@ -15,10 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 @Api(tags = "Messages", value = "String messages")
 @Validated
 public class MessageController {
-
-    public MessageController() {
-    }
-
+    
     @GetMapping("/hello")
     @ApiOperation(value = "Return default message 'Hello Dear World!'")
     @ApiResponse(code = 200, message = "Success")
