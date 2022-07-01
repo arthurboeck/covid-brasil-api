@@ -10,39 +10,41 @@ Responsável por retornar dados relacionados ao avanço do covid no brasil.
 - [WireMock](https://wiremock.org/docs/spring-boot/)
 - [Mockito](https://site.mockito.org/)
 
-### Connection to Heroku
+### URls
 
-Heroku URL: `https://covid-brazil-data-api.herokuapp.com/`
+Heroku URL: https://covid-brazil-data-api.herokuapp.com/
+
+Sonar Cloud: https://sonarcloud.io/summary/new_code?id=arthurboeck_covid-brazil-data-api
 
 ### Do it Yourself :bomb:
 
-#### How to build:
+#### Como build:
 
 ````
 mvn clean install -DskipTests
 ````
 
-#### How to execute unit tests:
+#### Como executar os unit tests:
 
 ````
 mvn test
 ````
 
-#### How to execute functional tests / integration tests:
+#### Como executar os functional tests / integration tests:
 
 ````
 mvn clean test -Pfunctional-test
 ````
 
-#### How to run spring boot application:
+#### Como executar a aplicação spring boot:
 
 ````
 mvn spring-boot:run
 ````
 
-While application running, the below URLs'll be able: :rocket:
+Enquanto a aplicação estiver executando, as URLs abaixo serão disponibilizadas: :rocket:
 
 - Actuator: `http://localhost:8080/actuator`
-- Swagger: `http://localhost:8080/swagger-ui/index.html`
+- Swagger: `http://localhost:8080/swagger-ui.html`
 - Swagger Resources `http://localhost:8080/swagger-resources`
 - Aplication URL: `http://localhost:8080/api/v1/`
