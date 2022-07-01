@@ -146,7 +146,8 @@
                     <excludes>
                         <exclude>**/Application.java</exclude>
                         <exclude>**/SwaggerConfig.java</exclude>
-                        <exclude>br/com/covid/brazil/api/**/*DTO.*</exclude>
+                        <exclude>**/ModelMapperConfig.java</exclude>
+                        <exclude>**/*DTO.java</exclude>
                     </excludes>
                 </configuration>
                 <executions>

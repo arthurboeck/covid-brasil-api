@@ -18,10 +18,10 @@ import static springfox.documentation.spi.DocumentationType.SWAGGER_2;
 public class SwaggerConfig {
 
     @Value("Spring Boot Messages API")
-    private String TITLE;
+    private String title;
 
     @Value("Springboot API running on Heroku")
-    private String DESCRIPTION;
+    private String description;
     private static final String BASE_PACKAGE = Application.class.getPackageName();
 
     @Bean
@@ -37,8 +37,8 @@ public class SwaggerConfig {
 
     private ApiInfo getApiInfo() {
         return new ApiInfoBuilder()
-                .title(TITLE)
-                .description(DESCRIPTION)
+                .title(title)
+                .description(description)
                 .build();
     }
 }
