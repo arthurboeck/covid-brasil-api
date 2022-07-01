@@ -12,7 +12,7 @@ Responsável por retornar dados relacionados ao avanço do covid no brasil.
 
 ### Connection to Heroku
 
-Heroku URL: `https://springboot-messages.herokuapp.com/`
+Heroku URL: `https://covid-brazil-data-api.herokuapp.com/`
 
 ### Do it Yourself :bomb:
 
