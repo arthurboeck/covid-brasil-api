@@ -1,9 +1,7 @@
 service:
   BrazilIoApi:
     url: http://localhost:${wiremock.server.port}
-    key: AAAAAAA
-    bid: BBBBBBB
-    uid: CCCCCCC
+    token: AAAAAAA
 
 spring:
   main:
