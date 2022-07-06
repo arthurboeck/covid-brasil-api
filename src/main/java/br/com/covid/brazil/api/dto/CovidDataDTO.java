@@ -11,7 +11,6 @@ import java.time.LocalDate;
 @Setter
 @NoArgsConstructor
 public class CovidDataDTO {
-
     private String city;
     private Long city_ibge_code;
     private LocalDate date;
@@ -27,5 +26,4 @@ public class CovidDataDTO {
     private Long new_deaths;
     private Long order_for_place;
     private String state;
-
 }
