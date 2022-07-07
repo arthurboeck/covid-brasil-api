@@ -1,6 +1,6 @@
 package br.com.covid.brazil.api.controller;
 
-import br.com.covid.brazil.api.client.IBrasilIoClient;
+import br.com.covid.brazil.api.client.IBrasilIoService;
 import br.com.covid.brazil.api.util.UnitBaseTest;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -29,13 +29,13 @@ class CovidDataControllerTest extends UnitBaseTest {
     private MockMvc mockMvc;
 
     @MockBean
-    private IBrasilIoClient iBrasilIoClient;
+    private IBrasilIoService iBrasilIoClient;
 
     @ParameterizedTest
     @ValueSource(strings = {"alegrete", "Alegrete", "ALEGRETE", "aLEGRETE"})
     @DisplayName("Deve Retornar Dados Covid com Sucesso - Variaçãoes do Parametro Municipio")
     void deveRetornarDadosCovidVariacaoParamMunicipio(String municipio) throws Exception {
-        doReturn(retornoSucesso).when(iBrasilIoClient).getCovidData(anyString(), anyString());
+        doReturn(retornoSucesso).when(iBrasilIoClient).obterDadosCovid(anyString(), anyString());
 
         mockMvc
                 .perform(MockMvcRequestBuilders.get("/api/v1/covid")
@@ -64,7 +64,7 @@ class CovidDataControllerTest extends UnitBaseTest {
     @ValueSource(strings = {"rs", "RS", "rS", "Rs"})
     @DisplayName("Deve Retornar Dados Covid com Sucesso - Variaçãoes do Parametro Estado")
     void deveRetornarDadosCovidVariacaoParamEstado(String estado) throws Exception {
-        doReturn(retornoSucesso).when(iBrasilIoClient).getCovidData(anyString(), anyString());
+        doReturn(retornoSucesso).when(iBrasilIoClient).obterDadosCovid(anyString(), anyString());
 
         mockMvc
                 .perform(MockMvcRequestBuilders.get("/api/v1/covid")
@@ -92,7 +92,7 @@ class CovidDataControllerTest extends UnitBaseTest {
     @Test
     @DisplayName("Deve Retornar Not Found - Erro ao Obter Dados Covid")
     void deveRetornarNotFoundErroObterDadosCovid() throws Exception {
-        doThrow(RuntimeException.class).when(iBrasilIoClient).getCovidData(anyString(), anyString());
+        doThrow(RuntimeException.class).when(iBrasilIoClient).obterDadosCovid(anyString(), anyString());
 
         mockMvc
                 .perform(MockMvcRequestBuilders.get("/api/v1/covid")

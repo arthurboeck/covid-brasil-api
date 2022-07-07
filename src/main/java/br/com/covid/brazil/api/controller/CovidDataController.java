@@ -1,6 +1,6 @@
 package br.com.covid.brazil.api.controller;
 
-import br.com.covid.brazil.api.client.IBrasilIoClient;
+import br.com.covid.brazil.api.client.IBrasilIoService;
 import br.com.covid.brazil.api.dto.CovidDataDTO;
 import io.swagger.annotations.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +21,7 @@ import javax.validation.constraints.NotNull;
 public class CovidDataController {
 
     @Autowired
-    private IBrasilIoClient iBrasilIoClient;
+    private IBrasilIoService iBrasilIoClient;
 
     @GetMapping("/covid")
     @ApiOperation(value = "Dados sobre o covid por municipio")
@@ -38,7 +38,7 @@ public class CovidDataController {
             @NotNull(message = "Municipio não pode ser null/vazio") @NotBlank(message = "Municipio não pode ser null/vazio")
             @RequestParam(name = "municipio") String municipio) {
         try {
-            return ResponseEntity.ok(iBrasilIoClient.getCovidData(uf, municipio));
+            return ResponseEntity.ok(iBrasilIoClient.obterDadosCovid(uf, municipio));
         } catch (Exception e) {
             return ResponseEntity.notFound().build();
         }
