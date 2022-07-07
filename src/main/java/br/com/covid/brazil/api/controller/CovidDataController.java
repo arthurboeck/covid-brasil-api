@@ -10,37 +10,37 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import springfox.documentation.swagger2.mappers.ModelMapper;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
 @RestController
 @RequestMapping("/api/v1")
-@Api(tags = "Covid", value = "Dados Sobre o Covid por Cidade")
+@Api(tags = "Dados Covid Brasil", value = "Dados Sobre o Covid por Municipio")
 @Validated
 public class CovidDataController {
 
     @Autowired
     private IBrasilIoClient iBrasilIoClient;
 
-    @Autowired
-    private ModelMapper modelMapper;
-
     @GetMapping("/covid")
-    @ApiOperation(value = "Dados sobre o covid por cidade")
+    @ApiOperation(value = "Dados sobre o covid por municipio")
     @ApiResponses(value = {
             @ApiResponse(code = 200, message = "Success"),
             @ApiResponse(code = 400, message = "Bad Request"),
             @ApiResponse(code = 500, message = "Internal Error")})
     public ResponseEntity<CovidDataDTO> getCovidData(
-            @ApiParam(value = "UF a ser pesquisado", required = true)
-            @NotNull(message = "UF não pode ser null/vazio") @NotBlank(message = "UF não pode ser null/vazio")
+            @ApiParam(value = "UF a ser pesquisada", required = true)
+            @NotNull(message = "UF não pode ser null/vazia") @NotBlank(message = "UF não pode ser null/vazia")
             @RequestParam(name = "uf") String uf,
 
-            @ApiParam(value = "Cidade a ser pesquisada", required = true)
-            @NotNull(message = "Cidade não pode ser null/vazio") @NotBlank(message = "Cidade não pode ser null/vazio")
-            @RequestParam(name = "cidade") String cidade) {
-        return ResponseEntity.ok(iBrasilIoClient.getCovidData(uf, cidade));
+            @ApiParam(value = "Municipio a ser pesquisado", required = true)
+            @NotNull(message = "Municipio não pode ser null/vazio") @NotBlank(message = "Municipio não pode ser null/vazio")
+            @RequestParam(name = "municipio") String municipio) {
+        try {
+            return ResponseEntity.ok(iBrasilIoClient.getCovidData(uf, municipio));
+        } catch (Exception e) {
+            return ResponseEntity.notFound().build();
+        }
     }
 }
