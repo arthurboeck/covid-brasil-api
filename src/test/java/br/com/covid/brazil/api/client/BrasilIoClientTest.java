@@ -4,6 +4,7 @@ import br.com.covid.brazil.api.dto.CovidDataDTO;
 import br.com.covid.brazil.api.util.UnitBaseTest;
 import feign.FeignException;
 import javassist.NotFoundException;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
@@ -27,10 +28,8 @@ public class BrasilIoClientTest extends UnitBaseTest {
     @Mock
     private FeignException feignException;
 
-    private CovidDataDTO retornoSucesso =
-            new CovidDataDTO("RS", "Alegrete", 123L, 123L, LocalDate.now(), "202212", 1222L, 12000L, 100L, BigDecimal.ONE, LocalDate.now(), BigDecimal.TEN, 1L, 2L, 3L);
-
     @Test
+    @DisplayName("Deve Retornar Sucesso Feign Client")
     void deveRetornarBrasiolIoComSucesso() throws NotFoundException {
         doReturn(retornoSucesso).when(iBrasilIoClient).getCovidData(anyString(), anyString());
 
@@ -41,6 +40,7 @@ public class BrasilIoClientTest extends UnitBaseTest {
     }
 
     @Test
+    @DisplayName("Deve Retornar Feign Exceptio - Erro no Feign Client")
     void deveRetornarFeignException() throws NotFoundException {
         String mensagem = "errou feign";
         Optional<ByteBuffer> responseBody = Optional.empty();
