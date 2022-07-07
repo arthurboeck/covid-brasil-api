@@ -29,7 +29,7 @@ public class BrasilIoClient implements IBrasilIoClient {
 
     @Override
     public CovidDataDTO getCovidData(String uf, String municipio) throws NotFoundException {
-        BasilIoDTO results = iBrasilIoClient.getCovidaData(token, "True", uf.toUpperCase(), capitalize(municipio));
+        BrasilIoDTO results = iBrasilIoClient.getCovidaData(token, "True", uf.toUpperCase(), capitalize(municipio));
         try {
             return results.getResults().get(0);
         } catch (Exception e) {
@@ -41,9 +41,9 @@ public class BrasilIoClient implements IBrasilIoClient {
     @FeignClient(url = "${service.brasilIoApi.url}", value = "brasilIoApi")
     interface IBrasilIoClient {
         @GetMapping(path = "caso_full/data/", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
-        BasilIoDTO getCovidaData(@RequestHeader(HttpHeaders.AUTHORIZATION) String token,
-                                 @RequestParam("is_last") String ehUltimaAtualizacao,
-                                 @RequestParam("state") String uf,
-                                 @RequestParam("city") String municipio);
+        BrasilIoDTO getCovidaData(@RequestHeader(HttpHeaders.AUTHORIZATION) String token,
+                                  @RequestParam("is_last") String ehUltimaAtualizacao,
+                                  @RequestParam("state") String uf,
+                                  @RequestParam("city") String municipio);
     }
 }

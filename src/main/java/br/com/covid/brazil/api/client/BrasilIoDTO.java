@@ -12,7 +12,7 @@ import java.util.List;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class BasilIoDTO {
+public class BrasilIoDTO {
 
     private List<CovidDataDTO> results;
 }
