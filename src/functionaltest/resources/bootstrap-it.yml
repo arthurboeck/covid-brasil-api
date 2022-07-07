@@ -26,3 +26,8 @@ spring:
           enable_lazy_load_no_trans: true
       hibernate:
         ddl-auto: none
+
+logging:
+  level:
+    root: ERROR
+    org.springframework: ERROR
