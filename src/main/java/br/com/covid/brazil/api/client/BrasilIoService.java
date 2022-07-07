@@ -25,7 +25,7 @@ public class BrasilIoService implements IBrasilIoService {
     @Override
     public CovidDataDTO obterDadosCovid(String uf, String municipio) throws NotFoundException {
         try {
-            return iBrasilIoClient.getCovidaData(token, "True", uf.toUpperCase(), capitalize(municipio)).getResults().get(0);
+            return iBrasilIoClient.getCovidData(token, "True", uf.toUpperCase(), capitalize(municipio)).getResults().get(0);
         } catch (Exception e) {
             throw new NotFoundException(format("Registro não encontrado: %s", e.getMessage()));
         }

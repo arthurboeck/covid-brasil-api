@@ -12,8 +12,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 interface IBrasilIoClient {
 
     @GetMapping(path = "caso_full/data/", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
-    BrasilIoDTO getCovidaData(@RequestHeader(HttpHeaders.AUTHORIZATION) String token,
-                              @RequestParam("is_last") String ehUltimaAtualizacao,
-                              @RequestParam("state") String uf,
-                              @RequestParam("city") String municipio);
+    BrasilIoDTO getCovidData(@RequestHeader(HttpHeaders.AUTHORIZATION) String token,
+                             @RequestParam("is_last") String ehUltimaAtualizacao,
+                             @RequestParam("state") String uf,
+                             @RequestParam("city") String municipio);
 }
