@@ -77,7 +77,7 @@ class CovidDataControllerTest extends UnitBaseTest {
         doReturn(retornoSucesso).when(iBrasilIoService).obterDadosCovid(anyString(), anyString());
 
         mockMvc
-                .perform(MockMvcRequestBuilders.get(OBTER_DADOS_COVID_ESTADO_MUNICIO.getUrl())
+                .perform(MockMvcRequestBuilders.get("/api/v1/covid")
                         .accept(MediaType.APPLICATION_JSON)
                         .param(UF_PARAM_BODY, estado)
                         .param(MUNICIPIO_PARAM_BODY, ALEGRE_PARAM))
