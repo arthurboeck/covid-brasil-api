@@ -14,7 +14,7 @@ class CovidDataControllerFunctionalTest extends FunctionalBaseTest {
     //    @Test TODO Revisar
     @Tag("functional")
     void deveRetornarDadosDoMunicipio() throws Exception {
-        getMvc().perform(get("/api/v1/covid")
+        getMvc().perform(get("/api/v1/covid/externo")
                 .contentType(MediaType.APPLICATION_JSON)
                 .param("uf", "rs")
                 .param("municipio", "Alegrete"))
