@@ -42,7 +42,7 @@ class CovidDataControllerTest extends UnitBaseTest {
         mockMvc
                 .perform(MockMvcRequestBuilders.get(OBTER_DADOS_COVID_ESTADO_MUNICIO.getUrl())
                         .accept(MediaType.APPLICATION_JSON)
-                        .param(UF_PARAM_BODY, "RS")
+                        .param(UF_PARAM_BODY, RS_PARAM)
                         .param(MUNICIPIO_PARAM_BODY, municipio))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath(UF_PARAM_BODY, is(retornoSucesso.getUf())))
@@ -72,7 +72,7 @@ class CovidDataControllerTest extends UnitBaseTest {
                 .perform(MockMvcRequestBuilders.get(OBTER_DADOS_COVID_ESTADO_MUNICIO.getUrl())
                         .accept(MediaType.APPLICATION_JSON)
                         .param(UF_PARAM_BODY, estado)
-                        .param(MUNICIPIO_PARAM_BODY, "Alegrete"))
+                        .param(MUNICIPIO_PARAM_BODY, ALEGRE_PARAM))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath(UF_PARAM_BODY, is(retornoSucesso.getUf())))
                 .andExpect(jsonPath(MUNICIPIO_PARAM_BODY, is(retornoSucesso.getMunicipio())))
@@ -99,8 +99,8 @@ class CovidDataControllerTest extends UnitBaseTest {
         mockMvc
                 .perform(MockMvcRequestBuilders.get(OBTER_DADOS_COVID_ESTADO_MUNICIO.getUrl())
                         .accept(MediaType.APPLICATION_JSON)
-                        .param(UF_PARAM_BODY, "RS")
-                        .param(MUNICIPIO_PARAM_BODY, "Alegrete"))
+                        .param(UF_PARAM_BODY, RS_PARAM)
+                        .param(MUNICIPIO_PARAM_BODY, ALEGRE_PARAM))
                 .andExpect(status().isNotFound());
     }
 
@@ -114,7 +114,7 @@ class CovidDataControllerTest extends UnitBaseTest {
                 .perform(MockMvcRequestBuilders.get(OBTER_DADOS_COVID_ESTADO_MUNICIO.getUrl())
                         .accept(MediaType.APPLICATION_JSON)
                         .param(UF_PARAM_BODY, estado)
-                        .param(MUNICIPIO_PARAM_BODY, "Alegrete"))
+                        .param(MUNICIPIO_PARAM_BODY, ALEGRE_PARAM))
                 .andExpect(status().isBadRequest())
                 .andExpect(jsonPath(ERROR_BODY, containsString(CONSTRAINT_VIOLATION_EXCEPTION_MSG)))
                 .andExpect(jsonPath(ERROR_BODY, containsString(UF_NULL_MSG)));
@@ -129,7 +129,7 @@ class CovidDataControllerTest extends UnitBaseTest {
         mockMvc
                 .perform(MockMvcRequestBuilders.get(OBTER_DADOS_COVID_ESTADO_MUNICIO.getUrl())
                         .accept(MediaType.APPLICATION_JSON)
-                        .param(UF_PARAM_BODY, "RS")
+                        .param(UF_PARAM_BODY, RS_PARAM)
                         .param(MUNICIPIO_PARAM_BODY, municipio))
                 .andExpect(status().isBadRequest())
                 .andExpect(jsonPath(ERROR_BODY, containsString(CONSTRAINT_VIOLATION_EXCEPTION_MSG)))
@@ -144,7 +144,7 @@ class CovidDataControllerTest extends UnitBaseTest {
         mockMvc
                 .perform(MockMvcRequestBuilders.get(OBTER_DADOS_COVID_ESTADO_MUNICIO.getUrl())
                         .accept(MediaType.APPLICATION_JSON)
-                        .param(MUNICIPIO_PARAM_BODY, "Alegrete"))
+                        .param(MUNICIPIO_PARAM_BODY, ALEGRE_PARAM))
                 .andExpect(status().isBadRequest())
                 .andExpect(status().reason(equalTo(UF_REQUIRED_MSG)));
     }
@@ -157,7 +157,7 @@ class CovidDataControllerTest extends UnitBaseTest {
         mockMvc
                 .perform(MockMvcRequestBuilders.get(OBTER_DADOS_COVID_ESTADO_MUNICIO.getUrl())
                         .accept(MediaType.APPLICATION_JSON)
-                        .param(UF_PARAM_BODY, "RS"))
+                        .param(UF_PARAM_BODY, RS_PARAM))
                 .andExpect(status().isBadRequest())
                 .andExpect(status().reason(equalTo(MUNICIPIO_REQUIRED_MSG)));
     }

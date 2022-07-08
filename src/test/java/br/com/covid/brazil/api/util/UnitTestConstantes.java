@@ -19,12 +19,13 @@ public class UnitTestConstantes {
     public static final String NOVAS_MORTES_BODY = "novasMortes";
     public static final String ERROR_BODY = "error";
 
+    public static final String ALEGRE_PARAM = "Alegrete";
+    public static final String RS_PARAM = "RS";
+
 
     public static final String CONSTRAINT_VIOLATION_EXCEPTION_MSG = "javax.validation.ConstraintViolationException";
     public static final String MUNICIPIO_NULL_MSG = "getCovidData.municipio: Municipio não pode ser null/vazio";
     public static final String UF_NULL_MSG = "getCovidData.uf: UF não pode ser null/vazia";
     public static final String UF_REQUIRED_MSG = "Required request parameter 'uf' for method parameter type String is not present";
     public static final String MUNICIPIO_REQUIRED_MSG = "Required request parameter 'municipio' for method parameter type String is not present";
-
-
 }
