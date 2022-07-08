@@ -1,14 +1,13 @@
 package br.com.covid.brazil.api.client;
 
 import br.com.covid.brazil.api.dto.CovidDataDTO;
-import javassist.NotFoundException;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import static java.lang.String.format;
 import static org.springframework.util.StringUtils.capitalize;
 
-@Component
+@Service
 public class BrasilIoService implements IBrasilIoService {
 
     private final IBrasilIoClient iBrasilIoClient;
@@ -23,11 +22,11 @@ public class BrasilIoService implements IBrasilIoService {
     }
 
     @Override
-    public CovidDataDTO obterDadosCovid(String uf, String municipio) throws NotFoundException {
+    public CovidDataDTO obterDadosCovid(String uf, String municipio) throws RuntimeException {
         try {
             return iBrasilIoClient.getCovidData(token, "True", uf.toUpperCase(), capitalize(municipio)).getResults().get(0);
         } catch (Exception e) {
-            throw new NotFoundException(format("Registro não encontrado: %s", e.getMessage()));
+            throw new RuntimeException(format("Registro não encontrado: %s", e.getMessage()));
         }
     }
 }

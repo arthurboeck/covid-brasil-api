@@ -40,7 +40,18 @@ public class BrasilIoServiceTest extends UnitBaseTest {
         verify(iBrasilIoService).obterDadosCovid(anyString(), anyString());
     }
 
-//    @Test
+    //    @Test
+    @DisplayName("Deve Retornar Not Found - Lista Vazia")
+    void deveRetornarNotFoundBrasiolIoListaVazia() {
+//        doReturn(new BrasilIoDTO(Collections.emptyList())).when(iBrasilIoClient).getCovidData(anyString(), anyString(), anyString(), anyString());
+
+        doThrow(RuntimeException.class).when(iBrasilIoClient).getCovidData(anyString(), anyString(), anyString(), anyString());
+
+        NotFoundException exception = assertThrows(NotFoundException.class, () -> iBrasilIoService.obterDadosCovid(anyString(), anyString()));
+        assertThat(exception.getMessage()).contains();
+    }
+
+    //    @Test
     @DisplayName("Deve Retornar Feign Exceptio - Erro no Feign Client")
     void deveRetornarFeignException() {
         String mensagem = "errou feign";
@@ -50,7 +61,7 @@ public class BrasilIoServiceTest extends UnitBaseTest {
         doReturn(mensagem).when(feignException).getMessage();
         doReturn(responseBody).when(feignException).responseBody();
         doReturn(contentUtf8).when(feignException).contentUTF8();
-        doThrow(feignException).when(iBrasilIoClient).getCovidData(anyString(), anyString(), anyString(), anyString());
+        doThrow(RuntimeException.class).when(iBrasilIoClient).getCovidData(anyString(), anyString(), anyString(), anyString());
 
         FeignException exception = assertThrows(FeignException.class, () -> iBrasilIoService.obterDadosCovid(anyString(), anyString()));
         assertThat(exception.getMessage()).isEqualTo(mensagem);
