@@ -16,7 +16,6 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.net.URI;
 import java.util.List;
-import java.util.logging.Logger;
 
 import static java.lang.String.format;
 
@@ -34,8 +33,6 @@ public class CovidDataController {
 
     @Autowired
     ModelMapper mapper;
-
-    private static Logger log;
 
     @GetMapping("/covid")
     @ApiOperation(value = "Buscar todos os dados sobre o covid por municipio do banco de dados")
@@ -77,7 +74,7 @@ public class CovidDataController {
             @ApiResponse(code = 204, message = "Success"),
             @ApiResponse(code = 400, message = "Bad Request"),
             @ApiResponse(code = 500, message = "Internal Error")})
-    public ResponseEntity deleteCovidData(@PathVariable("id") int id) {
+    public ResponseEntity<Object> deleteCovidData(@PathVariable("id") int id) {
         try {
             iCovidDataService.delete(id);
             return ResponseEntity.noContent().build();

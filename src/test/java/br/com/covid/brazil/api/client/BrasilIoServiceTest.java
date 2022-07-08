@@ -31,7 +31,7 @@ public class BrasilIoServiceTest extends UnitBaseTest {
 
     @BeforeEach
     void setup() {
-        MockitoAnnotations.openMocks(true);
+        MockitoAnnotations.openMocks(this);
         brasilIoService = new BrasilIoService("A", iBrasilIoClient);
     }
 

@@ -7,11 +7,14 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.modelmapper.ModelMapper;
 
 import java.util.List;
+import java.util.Optional;
 
 import static org.assertj.core.api.AssertionsForInterfaceTypes.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -21,23 +24,28 @@ import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.doReturn;
 
 @ExtendWith(MockitoExtension.class)
-public class CovidDataServiceTest extends UnitBaseTest {
+class CovidDataServiceTest extends UnitBaseTest {
 
     @Mock
-    private ICovidDataService iCovidDataService;
     private CovidDataRepository covidDataRepository;
+
+    @InjectMocks
+    private CovidDataService covidDataService;
+
+    @Mock
+    private ModelMapper mapper;
 
     @BeforeEach
     void setup() {
-        MockitoAnnotations.openMocks(true);
+        MockitoAnnotations.openMocks(this);
     }
 
     @Test
     @DisplayName("Deve Retornar Lista CovidData Model")
     void deveRetornarListaModel() {
-        doReturn(List.of(retornoCovidDataModel)).when(iCovidDataService).getAllCovidData();
+        doReturn(List.of(retornoCovidDataModel)).when(covidDataRepository).findAll();
 
-        List<CovidData> retornoService = iCovidDataService.getAllCovidData();
+        List<CovidData> retornoService = covidDataService.getAllCovidData();
         assertThat(retornoService).hasSize(1);
         assertEquals(retornoService.get(0), retornoCovidDataModel);
     }
@@ -45,35 +53,35 @@ public class CovidDataServiceTest extends UnitBaseTest {
     @Test
     @DisplayName("Deve Retornar CovidData Model")
     void deveRetornarModelPesquisaById() {
-        doReturn(retornoCovidDataModel).when(iCovidDataService).getCovidDataById(anyInt());
+        doReturn(Optional.of(retornoCovidDataModel)).when(covidDataRepository).findById(anyInt());
 
-        CovidData retornoService = iCovidDataService.getCovidDataById(1);
+        CovidData retornoService = covidDataService.getCovidDataById(1);
         assertEquals(retornoService, retornoCovidDataModel);
     }
 
     @Test
     @DisplayName("Deve Salvar ou Atualizar CovidData Model")
     void deveSalvarOuAtualziarModel() {
-        doReturn(retornoCovidDataModel).when(iCovidDataService).saveOrUpdate(any());
+        doReturn(retornoCovidDataModel).when(covidDataRepository).save(any());
 
-        CovidData retornoService = iCovidDataService.saveOrUpdate(retornoCovidDataModel);
+        CovidData retornoService = covidDataService.saveOrUpdate(retornoCovidDataModel);
         assertEquals(retornoService, retornoCovidDataModel);
     }
 
     @Test
     @DisplayName("Deve Historico CovidData Model")
     void deveSalvarHistoricoModel() {
-        doReturn(retornoCovidDataModel).when(iCovidDataService).salvarHistoricoConsulta(any());
+        doReturn(retornoCovidDataModel).when(mapper).map(retornoCovidDataDto, CovidData.class);
+        doReturn(retornoCovidDataModel).when(covidDataRepository).save(retornoCovidDataModel);
 
-        CovidData retornoService = iCovidDataService.salvarHistoricoConsulta(retornoCovidDataDto);
+        CovidData retornoService = covidDataService.salvarHistoricoConsulta(retornoCovidDataDto);
         assertEquals(retornoService, retornoCovidDataModel);
     }
 
     @Test
     @DisplayName("Deve Deletar CovidData Model")
     void deveDeletarHistorico() {
-        doNothing().when(iCovidDataService).delete(anyInt());
-
-        iCovidDataService.delete(1);
+        doNothing().when(covidDataRepository).deleteById(anyInt());
+        covidDataService.delete(1);
     }
 }
