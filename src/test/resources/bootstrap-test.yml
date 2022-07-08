@@ -40,5 +40,5 @@ spring:
 
 logging:
   level:
-    root: INFO
-    org.springframework: INFO
+    root: ERROR
+    org.springframework: ERROR
