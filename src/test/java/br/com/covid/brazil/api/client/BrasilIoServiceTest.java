@@ -29,7 +29,7 @@ public class BrasilIoServiceTest extends UnitBaseTest {
     @Mock
     private FeignException feignException;
 
-//    @Test
+    @Test
     @DisplayName("Deve Retornar Sucesso Feign Client")
     void deveRetornarBrasiolIoComSucesso() throws NotFoundException {
         doReturn(new BrasilIoDTO(List.of(retornoSucesso))).when(iBrasilIoClient).getCovidData(anyString(), anyString(), anyString(), anyString());
@@ -40,7 +40,7 @@ public class BrasilIoServiceTest extends UnitBaseTest {
         verify(iBrasilIoService).obterDadosCovid(anyString(), anyString());
     }
 
-    //    @Test
+        @Test
     @DisplayName("Deve Retornar Not Found - Lista Vazia")
     void deveRetornarNotFoundBrasiolIoListaVazia() {
 //        doReturn(new BrasilIoDTO(Collections.emptyList())).when(iBrasilIoClient).getCovidData(anyString(), anyString(), anyString(), anyString());
