@@ -17,7 +17,7 @@ import static springfox.documentation.spi.DocumentationType.SWAGGER_2;
 @EnableSwagger2
 public class SwaggerConfig {
 
-    @Value("Spring Boot Messages API")
+    @Value("Spring Boot Covid Data API")
     private String title;
 
     @Value("Springboot API running on Heroku")
