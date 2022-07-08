@@ -11,13 +11,13 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 class CovidDataControllerFunctionalTest extends FunctionalBaseTest {
 
-//    @Test TODO Revisar
+    //    @Test TODO Revisar
     @Tag("functional")
     void deveRetornarDadosDoMunicipio() throws Exception {
         getMvc().perform(get("/api/v1/covid")
-                        .contentType(MediaType.APPLICATION_JSON)
-                        .param("uf", "rs")
-                        .param("municipio", "Alegrete"))
+                .contentType(MediaType.APPLICATION_JSON)
+                .param("uf", "rs")
+                .param("municipio", "Alegrete"))
                 .andExpect(status().isOk())
                 .andDo(MockMvcResultHandlers.print());
     }

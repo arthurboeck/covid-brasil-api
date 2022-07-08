@@ -17,12 +17,11 @@ import static springfox.documentation.spi.DocumentationType.SWAGGER_2;
 @EnableSwagger2
 public class SwaggerConfig {
 
+    private static final String BASE_PACKAGE = Application.class.getPackageName();
     @Value("Spring Boot Covid Data API")
     private String title;
-
     @Value("Springboot API running on Heroku")
     private String description;
-    private static final String BASE_PACKAGE = Application.class.getPackageName();
 
     @Bean
     public Docket apiV1() {
