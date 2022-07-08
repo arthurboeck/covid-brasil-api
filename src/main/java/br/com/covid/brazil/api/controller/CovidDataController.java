@@ -80,10 +80,10 @@ public class CovidDataController {
     public ResponseEntity deleteCovidData(@PathVariable("id") int id) {
         try {
             iCovidDataService.delete(id);
+            return ResponseEntity.noContent().build();
         } catch (Exception e) {
-            log.warning(format("Alguma coisa deu errado, ao realizar delete: ID %d", id));
+            return ResponseEntity.notFound().build();
         }
-        return ResponseEntity.noContent().build();
     }
 
     @GetMapping("/covid/externo")
