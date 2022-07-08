@@ -1,9 +1,9 @@
 package br.com.covid.brazil.api.service;
 
 import br.com.covid.brazil.api.client.IBrasilIoService;
+import br.com.covid.brazil.api.dto.CovidDataDTO;
 import br.com.covid.brazil.api.model.CovidData;
 import br.com.covid.brazil.api.repository.CovidDataRepository;
-import javassist.NotFoundException;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -14,7 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
-public class CovidDataService {
+public class CovidDataService implements ICovidDataService {
 
     @Autowired
     CovidDataRepository covidDataRepository;
@@ -41,17 +41,16 @@ public class CovidDataService {
         );
     }
 
-    public CovidData saveOrUpdate(CovidData covidData) {
-        return covidDataRepository.save(covidData);
+    public void saveOrUpdate(CovidData covidData) {
+        covidDataRepository.save(covidData);
     }
 
     public void delete(int id) {
         covidDataRepository.deleteById(id);
     }
 
-    public CovidData obterDadosCovid(String uf, String municipio) throws NotFoundException {
-        final var covidDataDTO = iBrasilIoClient.obterDadosCovid(uf, municipio);
+    public void salvarHistoricoConsulta(CovidDataDTO covidDataDTO) {
         final var covidData = this.mapper.map(covidDataDTO, CovidData.class);
-        return saveOrUpdate(covidData);
+        saveOrUpdate(covidData);
     }
 }
