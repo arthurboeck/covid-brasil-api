@@ -4,22 +4,23 @@ import br.com.covid.brazil.api.dto.CovidDataDTO;
 import br.com.covid.brazil.api.util.UnitBaseTest;
 import feign.FeignException;
 import javassist.NotFoundException;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
 import org.mockito.junit.jupiter.MockitoExtension;
-import org.springframework.beans.factory.annotation.Autowired;
 
-import java.nio.ByteBuffer;
 import java.util.Collections;
 import java.util.List;
-import java.util.Optional;
 
-import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.ArgumentMatchers.anyString;
-import static org.mockito.Mockito.*;
+import static org.mockito.Mockito.doReturn;
+import static org.mockito.Mockito.doThrow;
 
 
 @ExtendWith(MockitoExtension.class)
@@ -27,20 +28,24 @@ public class BrasilIoServiceTest extends UnitBaseTest {
 
     @Mock
     private IBrasilIoClient iBrasilIoClient;
-
-    @Autowired
-    private IBrasilIoService iBrasilIoService;
+    private BrasilIoService brasilIoService;
 
     @Mock
     private FeignException feignException;
 
-    //    @Test
+    @BeforeEach
+    void setup() {
+        MockitoAnnotations.initMocks(true);
+        brasilIoService = new BrasilIoService("A", iBrasilIoClient);
+    }
+
+    @Test
     @DisplayName("Deve Retornar Sucesso Feign Client")
     void deveRetornarBrasiolIoComSucesso() throws NotFoundException {
         BrasilIoDTO retornoFeignClient = new BrasilIoDTO(List.of(retornoSucesso));
-        doReturn(retornoFeignClient).when(iBrasilIoClient).getCovidData(any(), any(), any(), any());
+        doReturn(retornoFeignClient).when(iBrasilIoClient).getCovidData(anyString(), anyString(), anyString(), anyString());
 
-        CovidDataDTO retorno = iBrasilIoService.obterDadosCovid("A", "A");
+        CovidDataDTO retorno = brasilIoService.obterDadosCovid("A", "A");
         assertEquals(retorno.getUf(), retornoSucesso.getUf());
         assertEquals(retorno.getMunicipio(), retornoSucesso.getMunicipio());
         assertEquals(retorno.getCodigoIbgeMunicipio(), retornoSucesso.getCodigoIbgeMunicipio());
@@ -56,39 +61,24 @@ public class BrasilIoServiceTest extends UnitBaseTest {
         assertEquals(retorno.getMortesUltimoDia(), retornoSucesso.getMortesUltimoDia());
         assertEquals(retorno.getNovosCasos(), retornoSucesso.getNovosCasos());
         assertEquals(retorno.getNovasMortes(), retornoSucesso.getNovasMortes());
-
-        verify(iBrasilIoService).obterDadosCovid(anyString(), anyString());
     }
 
-    //    @Test
+    @Test
     @DisplayName("Deve Retornar Not Found - Lista Vazia")
     void deveRetornarNotFoundBrasiolIoListaVazia() {
-        doReturn(new BrasilIoDTO(Collections.emptyList())).when(iBrasilIoClient).getCovidData(anyString(), anyString(), anyString(), anyString());
+        BrasilIoDTO retornoVazio = new BrasilIoDTO(Collections.emptyList());
+        doReturn(retornoVazio).when(iBrasilIoClient).getCovidData(anyString(), anyString(), anyString(), anyString());
 
-        NotFoundException exception = assertThrows(NotFoundException.class, () -> iBrasilIoService.obterDadosCovid(anyString(), anyString()));
-        assertThat(exception.getMessage()).contains();
+        NotFoundException exception = assertThrows(NotFoundException.class, () -> brasilIoService.obterDadosCovid("B", "B"));
+        assertThat(exception.getMessage()).contains("Registro não encontrado:");
     }
 
-    //    @Test
-    @DisplayName("Deve Retornar Feign Exceptio - Erro no Feign Client")
-    void deveRetornarFeignException() {
-        String mensagem = "errou feign";
-        Optional<ByteBuffer> responseBody = Optional.empty();
-        String contentUtf8 = "json erro";
-
-        doReturn(mensagem).when(feignException).getMessage();
-        doReturn(responseBody).when(feignException).responseBody();
-        doReturn(contentUtf8).when(feignException).contentUTF8();
+    @Test
+    @DisplayName("Deve Retornar Not Found Exception - Erro RuntimeException")
+    void deveRetornarNotFoundExceptionErroRuntimeException() {
         doThrow(RuntimeException.class).when(iBrasilIoClient).getCovidData(anyString(), anyString(), anyString(), anyString());
 
-        FeignException exception = assertThrows(FeignException.class, () -> iBrasilIoService.obterDadosCovid(anyString(), anyString()));
-        assertThat(exception.getMessage()).isEqualTo(mensagem);
-        assertThat(exception.responseBody()).isEqualTo(responseBody);
-        assertThat(exception.contentUTF8()).isEqualTo(contentUtf8);
-
-        verify(feignException).getMessage();
-        verify(feignException).responseBody();
-        verify(feignException).contentUTF8();
-        verify(iBrasilIoClient).getCovidData(anyString(), anyString(), anyString(), anyString());
+        NotFoundException exception = assertThrows(NotFoundException.class, () -> brasilIoService.obterDadosCovid("C", "C"));
+        assertThat(exception.getMessage()).contains("Registro não encontrado:");
     }
 }

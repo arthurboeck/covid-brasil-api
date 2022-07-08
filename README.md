@@ -1,4 +1,4 @@
-# covid-brasil-api
+# covid-brazil-api
 Responsável por retornar dados relacionados ao avanço do covid no brasil.
 
 ### Dependencias do Projeto :wrench:
