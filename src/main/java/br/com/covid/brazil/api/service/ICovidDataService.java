@@ -10,9 +10,9 @@ public interface ICovidDataService {
 
     CovidData getCovidDataById(int id);
 
-    void saveOrUpdate(CovidData covidData);
+    CovidData saveOrUpdate(CovidData covidData);
 
     void delete(int id);
 
-    void salvarHistoricoConsulta(CovidDataDTO covidDataDTO);
+    CovidData salvarHistoricoConsulta(CovidDataDTO covidDataDTO);
 }

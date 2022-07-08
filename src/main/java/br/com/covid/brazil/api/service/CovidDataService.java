@@ -41,16 +41,16 @@ public class CovidDataService implements ICovidDataService {
         );
     }
 
-    public void saveOrUpdate(CovidData covidData) {
-        covidDataRepository.save(covidData);
+    public CovidData saveOrUpdate(CovidData covidData) {
+        return covidDataRepository.save(covidData);
     }
 
     public void delete(int id) {
         covidDataRepository.deleteById(id);
     }
 
-    public void salvarHistoricoConsulta(CovidDataDTO covidDataDTO) {
+    public CovidData salvarHistoricoConsulta(CovidDataDTO covidDataDTO) {
         final var covidData = this.mapper.map(covidDataDTO, CovidData.class);
-        saveOrUpdate(covidData);
+        return saveOrUpdate(covidData);
     }
 }
