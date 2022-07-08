@@ -27,9 +27,9 @@ import static br.com.covid.brazil.api.util.UnitTestConstantes.*;
 import static br.com.covid.brazil.api.util.UrlEnumTest.*;
 import static java.lang.String.format;
 import static org.hamcrest.Matchers.*;
+import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.ArgumentMatchers.anyString;
-import static org.mockito.Mockito.doReturn;
-import static org.mockito.Mockito.doThrow;
+import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 @WebMvcTest(controllers = CovidDataController.class)
@@ -51,7 +51,7 @@ class CovidDataControllerTest extends UnitBaseTest {
     @ArgumentsSource(ObterDadosCovidBrasilIoSucessoProvider.class)
     @DisplayName("Deve Retornar Dados Covid com Sucesso ao Consultar BrasilIo - Variaçãoes dos Parametro Estado/Municipio")
     void deveRetornarDadosCovidVariacaoParamMunicipioConsultarBrasilIo(String estado, String municipio) throws Exception {
-        doReturn(retornoSucesso).when(iBrasilIoService).obterDadosCovid(anyString(), anyString());
+        doReturn(retornoSucessoDto).when(iBrasilIoService).obterDadosCovid(anyString(), anyString());
 
         mockMvc
                 .perform(MockMvcRequestBuilders.get(OBTER_DADOS_COVID_BRASIL_IO.getUrl())
@@ -59,7 +59,7 @@ class CovidDataControllerTest extends UnitBaseTest {
                         .param(UF_PARAM_BODY, estado)
                         .param(MUNICIPIO_PARAM_BODY, municipio))
                 .andExpect(status().isOk())
-                .andExpect(assertBodyDefaultData(retornoSucesso));
+                .andExpect(assertBodyDefaultData(retornoSucessoDto));
     }
 
     @Test
@@ -116,9 +116,9 @@ class CovidDataControllerTest extends UnitBaseTest {
     @ArgumentsSource(ObterDadosCovidBrasilIoSucessoProvider.class)
     @DisplayName("Deve Persistir Dados Covid com Sucesso - Variaçãoes dos Parametro Estado/Municipio")
     void devePersistirDadosCovidVariacaoParamMunicipio(String estado, String municipio) throws Exception {
-        doReturn(retornoSucesso).when(iBrasilIoService).obterDadosCovid(anyString(), anyString());
-        doReturn(covidDataRetorno).when(iCovidDataService).salvarHistoricoConsulta(retornoSucesso);
-        doReturn(retornoSucesso).when(mapper).map(covidDataRetorno, CovidDataDTO.class);
+        doReturn(retornoSucessoDto).when(iBrasilIoService).obterDadosCovid(anyString(), anyString());
+        doReturn(covidDataRetorno).when(iCovidDataService).salvarHistoricoConsulta(retornoSucessoDto);
+        doReturn(retornoSucessoDto).when(mapper).map(covidDataRetorno, CovidDataDTO.class);
 
         mockMvc
                 .perform(MockMvcRequestBuilders.post(PERSISTIR_DADOS_COVID_BRASIL_IO.getUrl())
@@ -127,14 +127,14 @@ class CovidDataControllerTest extends UnitBaseTest {
                         .param(MUNICIPIO_PARAM_BODY, municipio))
                 .andExpect(status().isCreated())
                 .andExpect(jsonPath(ID_PARAM_BODY, is(1)))
-                .andExpect(assertBodyDefaultData(retornoSucesso));
+                .andExpect(assertBodyDefaultData(retornoSucessoDto));
     }
 
     @Test
     @DisplayName("Deve Retornar Not Found ao Persistir - Erro ao Persistir Dados Covid / RuntimeException")
     void deveRetornarNotFoundErroPersistirDadosCovid() throws Exception {
-        doReturn(retornoSucesso).when(iBrasilIoService).obterDadosCovid(anyString(), anyString());
-        doThrow(RuntimeException.class).when(iCovidDataService).salvarHistoricoConsulta(retornoSucesso);
+        doReturn(retornoSucessoDto).when(iBrasilIoService).obterDadosCovid(anyString(), anyString());
+        doThrow(RuntimeException.class).when(iCovidDataService).salvarHistoricoConsulta(retornoSucessoDto);
 
         mockMvc
                 .perform(MockMvcRequestBuilders.post(PERSISTIR_DADOS_COVID_BRASIL_IO.getUrl())
@@ -185,7 +185,7 @@ class CovidDataControllerTest extends UnitBaseTest {
     @DisplayName("Deve Listar Apenas Uma Consulta Existente")
     void deveListarApenasUmaConsultaExistente() throws Exception {
         doReturn(List.of(covidDataRetorno)).when(iCovidDataService).getAllCovidData();
-        doReturn(List.of(retornoSucesso)).when(mapper)
+        doReturn(List.of(retornoSucessoDto)).when(mapper)
                 .map(List.of(covidDataRetorno),
                         new TypeToken<List<CovidDataDTO>>() {
                         }.getType());
@@ -196,14 +196,14 @@ class CovidDataControllerTest extends UnitBaseTest {
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$", hasSize(1)))
                 .andExpect(jsonPath(format("$[%d].%s", 0, ID_PARAM_BODY), is(1)))
-                .andExpect(assertBodyDefaultDataPorPosicao(0, retornoSucesso));
+                .andExpect(assertBodyDefaultDataPorPosicao(0, retornoSucessoDto));
     }
 
     @Test
     @DisplayName("Deve Listar Duas Garantias Consulta Existente")
     void deveListarApenasDuasConsultaExistente() throws Exception {
         doReturn(List.of(covidDataRetorno, covidDataRetorno)).when(iCovidDataService).getAllCovidData();
-        doReturn(List.of(retornoSucesso, retornoSucesso)).when(mapper)
+        doReturn(List.of(retornoSucessoDto, retornoSucessoDto)).when(mapper)
                 .map(List.of(covidDataRetorno, covidDataRetorno),
                         new TypeToken<List<CovidDataDTO>>() {
                         }.getType());
@@ -214,9 +214,9 @@ class CovidDataControllerTest extends UnitBaseTest {
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$", hasSize(2)))
                 .andExpect(jsonPath(format("$[%d].%s", 0, ID_PARAM_BODY), is(1)))
-                .andExpect(assertBodyDefaultDataPorPosicao(0, retornoSucesso))
+                .andExpect(assertBodyDefaultDataPorPosicao(0, retornoSucessoDto))
                 .andExpect(jsonPath(format("$[%d].%s", 1, ID_PARAM_BODY), is(1)))
-                .andExpect(assertBodyDefaultDataPorPosicao(1, retornoSucesso));
+                .andExpect(assertBodyDefaultDataPorPosicao(1, retornoSucessoDto));
     }
 
     @Test
@@ -253,15 +253,47 @@ class CovidDataControllerTest extends UnitBaseTest {
     @Test
     @DisplayName("Deve Retornar Listagem Por ID")
     void deveRetornarListagemPorId() throws Exception {
-        doReturn(covidDataRetorno).when(iCovidDataService).getCovidDataById(1);
-        doReturn(retornoSucesso).when(mapper).map(iCovidDataService.getCovidDataById(1), CovidDataDTO.class);
+        doReturn(covidDataRetorno).when(iCovidDataService).getCovidDataById(anyInt());
+        doReturn(retornoSucessoDto).when(mapper).map(covidDataRetorno, CovidDataDTO.class);
 
         mockMvc
                 .perform(MockMvcRequestBuilders.get(LISTAR_CONSULTA_BY_ID.getUrl().replace(KEY_ID, "1"))
                         .accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$", hasSize(1)))
                 .andExpect(jsonPath(ID_PARAM_BODY, is(1)))
-                .andExpect(assertBodyDefaultData(retornoSucesso));
+                .andExpect(assertBodyDefaultData(retornoSucessoDto));
+    }
+
+    @Test
+    @DisplayName("Deve Retornar Not Found - Erro ao Listar Dados Covid / RuntimeException")
+    void deveRetornarNotFoundErroAoListar() throws Exception {
+        doThrow(RuntimeException.class).when(iCovidDataService).getCovidDataById(anyInt());
+
+        mockMvc
+                .perform(MockMvcRequestBuilders.get(LISTAR_CONSULTA_BY_ID.getUrl().replace(KEY_ID, "1"))
+                        .accept(MediaType.APPLICATION_JSON))
+                .andExpect(status().isNotFound());
+    }
+
+    @Test
+    @DisplayName("Deve Deletar Por ID")
+    void deveDeletarPorId() throws Exception {
+        doNothing().when(iCovidDataService).delete(anyInt());
+
+        mockMvc
+                .perform(MockMvcRequestBuilders.delete(DELETE_CONSULTA_BY_ID.getUrl().replace(KEY_ID, "1"))
+                        .accept(MediaType.APPLICATION_JSON))
+                .andExpect(status().isNoContent());
+    }
+
+    @Test
+    @DisplayName("Deve Retornar Not Found - Erro ao Deletar Dados Covid / NullPointerException")
+    void deveRetornarNotFoundErroAoDeletar() throws Exception {
+        doThrow(new NullPointerException("Erroou")).when(iCovidDataService).delete(anyInt());
+
+        mockMvc
+                .perform(MockMvcRequestBuilders.delete(DELETE_CONSULTA_BY_ID.getUrl().replace(KEY_ID, "1"))
+                        .accept(MediaType.APPLICATION_JSON))
+                .andExpect(status().isNotFound());
     }
 }

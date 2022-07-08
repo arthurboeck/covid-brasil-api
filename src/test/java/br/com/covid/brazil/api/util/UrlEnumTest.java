@@ -9,8 +9,8 @@ public enum UrlEnumTest {
     OBTER_DADOS_COVID_BRASIL_IO("/api/v1/covid/externo"),
     PERSISTIR_DADOS_COVID_BRASIL_IO("/api/v1/covid"),
     LISTAR_TODAS_CONSULTAS("/api/v1/covid"),
-    LISTAR_CONSULTA_BY_ID("/api/v1/{id}"),
-    DELETE_CONSULTA_BY_ID("/api/v1/{id}");
+    LISTAR_CONSULTA_BY_ID("/api/v1/covid/{id}"),
+    DELETE_CONSULTA_BY_ID("/api/v1/covid/{id}");
 
     private final String url;
 }
