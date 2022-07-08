@@ -18,7 +18,7 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import java.time.format.DateTimeFormatter;
 
 import static br.com.covid.brazil.api.util.UnitTestConstantes.*;
-import static br.com.covid.brazil.api.util.UrlEnumTest.OBTER_DADOS_COVID_ESTADO_MUNICIO;
+import static br.com.covid.brazil.api.util.UrlEnumTest.OBTER_DADOS_COVID_ESTADO_MUNICIO_API_EXTERNA;
 import static org.hamcrest.Matchers.*;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.doReturn;
@@ -48,7 +48,7 @@ class CovidDataControllerTest extends UnitBaseTest {
         doReturn(retornoSucesso).when(iBrasilIoService).obterDadosCovid(anyString(), anyString());
 
         mockMvc
-                .perform(MockMvcRequestBuilders.get(OBTER_DADOS_COVID_ESTADO_MUNICIO.getUrl())
+                .perform(MockMvcRequestBuilders.get(OBTER_DADOS_COVID_ESTADO_MUNICIO_API_EXTERNA.getUrl())
                         .accept(MediaType.APPLICATION_JSON)
                         .param(UF_PARAM_BODY, RS_PARAM)
                         .param(MUNICIPIO_PARAM_BODY, municipio))
@@ -77,7 +77,7 @@ class CovidDataControllerTest extends UnitBaseTest {
         doReturn(retornoSucesso).when(iBrasilIoService).obterDadosCovid(anyString(), anyString());
 
         mockMvc
-                .perform(MockMvcRequestBuilders.get("/api/v1/covid")
+                .perform(MockMvcRequestBuilders.get(OBTER_DADOS_COVID_ESTADO_MUNICIO_API_EXTERNA.getUrl())
                         .accept(MediaType.APPLICATION_JSON)
                         .param(UF_PARAM_BODY, estado)
                         .param(MUNICIPIO_PARAM_BODY, ALEGRE_PARAM))
@@ -105,7 +105,7 @@ class CovidDataControllerTest extends UnitBaseTest {
         doThrow(RuntimeException.class).when(iBrasilIoService).obterDadosCovid(anyString(), anyString());
 
         mockMvc
-                .perform(MockMvcRequestBuilders.get(OBTER_DADOS_COVID_ESTADO_MUNICIO.getUrl())
+                .perform(MockMvcRequestBuilders.get(OBTER_DADOS_COVID_ESTADO_MUNICIO_API_EXTERNA.getUrl())
                         .accept(MediaType.APPLICATION_JSON)
                         .param(UF_PARAM_BODY, RS_PARAM)
                         .param(MUNICIPIO_PARAM_BODY, ALEGRE_PARAM))
@@ -119,7 +119,7 @@ class CovidDataControllerTest extends UnitBaseTest {
         doReturn(retornoSucesso).when(iBrasilIoService).obterDadosCovid(anyString(), anyString());
 
         mockMvc
-                .perform(MockMvcRequestBuilders.get(OBTER_DADOS_COVID_ESTADO_MUNICIO.getUrl())
+                .perform(MockMvcRequestBuilders.get(OBTER_DADOS_COVID_ESTADO_MUNICIO_API_EXTERNA.getUrl())
                         .accept(MediaType.APPLICATION_JSON)
                         .param(UF_PARAM_BODY, estado)
                         .param(MUNICIPIO_PARAM_BODY, ALEGRE_PARAM))
@@ -135,7 +135,7 @@ class CovidDataControllerTest extends UnitBaseTest {
         doReturn(retornoSucesso).when(iBrasilIoService).obterDadosCovid(anyString(), anyString());
 
         mockMvc
-                .perform(MockMvcRequestBuilders.get(OBTER_DADOS_COVID_ESTADO_MUNICIO.getUrl())
+                .perform(MockMvcRequestBuilders.get(OBTER_DADOS_COVID_ESTADO_MUNICIO_API_EXTERNA.getUrl())
                         .accept(MediaType.APPLICATION_JSON)
                         .param(UF_PARAM_BODY, RS_PARAM)
                         .param(MUNICIPIO_PARAM_BODY, municipio))
@@ -150,7 +150,7 @@ class CovidDataControllerTest extends UnitBaseTest {
         doReturn(retornoSucesso).when(iBrasilIoService).obterDadosCovid(anyString(), anyString());
 
         mockMvc
-                .perform(MockMvcRequestBuilders.get(OBTER_DADOS_COVID_ESTADO_MUNICIO.getUrl())
+                .perform(MockMvcRequestBuilders.get(OBTER_DADOS_COVID_ESTADO_MUNICIO_API_EXTERNA.getUrl())
                         .accept(MediaType.APPLICATION_JSON)
                         .param(MUNICIPIO_PARAM_BODY, ALEGRE_PARAM))
                 .andExpect(status().isBadRequest())
@@ -163,7 +163,7 @@ class CovidDataControllerTest extends UnitBaseTest {
         doReturn(retornoSucesso).when(iBrasilIoService).obterDadosCovid(anyString(), anyString());
 
         mockMvc
-                .perform(MockMvcRequestBuilders.get(OBTER_DADOS_COVID_ESTADO_MUNICIO.getUrl())
+                .perform(MockMvcRequestBuilders.get(OBTER_DADOS_COVID_ESTADO_MUNICIO_API_EXTERNA.getUrl())
                         .accept(MediaType.APPLICATION_JSON)
                         .param(UF_PARAM_BODY, RS_PARAM))
                 .andExpect(status().isBadRequest())
