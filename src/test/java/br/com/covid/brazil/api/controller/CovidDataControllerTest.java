@@ -52,6 +52,8 @@ class CovidDataControllerTest extends UnitBaseTest {
     @DisplayName("Deve Retornar Dados Covid com Sucesso ao Consultar BrasilIo - Variaçãoes dos Parametro Estado/Municipio")
     void deveRetornarDadosCovidVariacaoParamMunicipioConsultarBrasilIo(String estado, String municipio) throws Exception {
         doReturn(retornoSucessoDto).when(iBrasilIoService).obterDadosCovid(anyString(), anyString());
+        doReturn(covidDataRetorno).when(iCovidDataService).salvarHistoricoConsulta(retornoSucessoDto);
+        doReturn(retornoSucessoDto).when(mapper).map(covidDataRetorno, CovidDataDTO.class);
 
         mockMvc
                 .perform(MockMvcRequestBuilders.get(OBTER_DADOS_COVID_BRASIL_IO.getUrl())
