@@ -1,6 +1,5 @@
 package br.com.covid.brazil.api.service;
 
-import br.com.covid.brazil.api.client.IBrasilIoService;
 import br.com.covid.brazil.api.dto.CovidDataDTO;
 import br.com.covid.brazil.api.model.CovidData;
 import br.com.covid.brazil.api.repository.CovidDataRepository;
@@ -18,9 +17,6 @@ public class CovidDataService implements ICovidDataService {
 
     @Autowired
     CovidDataRepository covidDataRepository;
-
-    @Autowired
-    IBrasilIoService iBrasilIoClient;
 
     @Autowired
     ModelMapper mapper;

@@ -102,8 +102,8 @@ public class CovidDataController {
             @RequestParam(name = "municipio") String municipio) {
         try {
             final var covidDataDTO = iBrasilIoService.obterDadosCovid(uf, municipio);
-            iCovidDataService.salvarHistoricoConsulta(covidDataDTO);
-            return ResponseEntity.ok(covidDataDTO);
+            CovidData persisted = iCovidDataService.salvarHistoricoConsulta(covidDataDTO);
+            return ResponseEntity.ok(mapper.map(persisted, CovidDataDTO.class));
         } catch (Exception e) {
             return ResponseEntity.notFound().build();
         }
