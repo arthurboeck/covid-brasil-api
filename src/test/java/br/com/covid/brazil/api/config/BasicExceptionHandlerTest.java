@@ -26,13 +26,10 @@ class BasicExceptionHandlerTest {
 
     @Test
     void mustReturnErrorWhenSimplePropertyPath() {
-        // given
         ConstraintViolationException ex = getConstraintViolationException("message");
 
-        // when
         ErrorApiDTO errorDto = basicExceptionHandler.exceptionHandler(ex).getBody();
 
-        // then
         assertNotNull(errorDto);
         assertEquals(CONSTRAINT_VIOLATION_MSG, errorDto.getError());
         assertEquals(LocalDateTime.now().toString().substring(0, 20), errorDto.getTimestamp().substring(0, 20));
@@ -40,13 +37,10 @@ class BasicExceptionHandlerTest {
 
     @Test
     void mustReturnErrorWhenComposePropertyPath() {
-        // given
         ConstraintViolationException ex = getConstraintViolationException("object.message");
 
-        // when
         ErrorApiDTO errorDto = basicExceptionHandler.exceptionHandler(ex).getBody();
 
-        // then
         assertNotNull(errorDto);
         assertEquals(CONSTRAINT_VIOLATION_MSG, errorDto.getError());
         assertEquals(LocalDateTime.now().toString().substring(0, 20), errorDto.getTimestamp().substring(0, 20));
