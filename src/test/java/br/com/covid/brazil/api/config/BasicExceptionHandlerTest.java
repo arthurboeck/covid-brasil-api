@@ -20,10 +20,9 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 @ExtendWith(MockitoExtension.class)
 class BasicExceptionHandlerTest {
 
+    private static final String CONSTRAINT_VIOLATION_MSG = "javax.validation.ConstraintViolationException: textToChatBot.message: Message can't be null or empty";
     @Spy
     BasicExceptionHandler basicExceptionHandler;
-
-    private static final String CONSTRAINT_VIOLATION_MSG = "javax.validation.ConstraintViolationException: textToChatBot.message: Message can't be null or empty";
 
     @Test
     void mustReturnErrorWhenSimplePropertyPath() {
