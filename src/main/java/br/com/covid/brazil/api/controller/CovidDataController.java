@@ -38,7 +38,7 @@ public class CovidDataController {
     private static Logger log;
 
     @GetMapping("/covid")
-    @ApiOperation(value = "Buscar todos os detalhes dos dados sobre o covid por municipio do banco de dados")
+    @ApiOperation(value = "Buscar todos os dados sobre o covid por municipio do banco de dados")
     @ApiResponses(value = {
             @ApiResponse(code = 200, message = "Success"),
             @ApiResponse(code = 400, message = "Bad Request"),
@@ -57,7 +57,7 @@ public class CovidDataController {
     }
 
     @GetMapping("/covid/{id}")
-    @ApiOperation(value = "Buscar os detalhes de um dado sobre o covid por municipio específico")
+    @ApiOperation(value = "Buscar os dados sobre o covid por municipio específico")
     @ApiResponses(value = {
             @ApiResponse(code = 200, message = "Success"),
             @ApiResponse(code = 400, message = "Bad Request"),
@@ -87,7 +87,7 @@ public class CovidDataController {
     }
 
     @GetMapping("/covid/externo")
-    @ApiOperation(value = "Obter informações sobre o covid por municipio específico - BrasilIo Data")
+    @ApiOperation(value = "Obter dados sobre o covid por municipio específico - BrasilIo Data")
     @ApiResponses(value = {
             @ApiResponse(code = 200, message = "Success"),
             @ApiResponse(code = 400, message = "Bad Request"),
@@ -110,7 +110,7 @@ public class CovidDataController {
     }
 
     @PostMapping("/covid")
-    @ApiOperation(value = "Salvar os detalhes de um dado sobre o covid por municipio específico")
+    @ApiOperation(value = "Salvar os dados sobre o covid por municipio específico")
     @ApiResponses(value = {
             @ApiResponse(code = 201, message = "Created"),
             @ApiResponse(code = 400, message = "Bad Request"),
