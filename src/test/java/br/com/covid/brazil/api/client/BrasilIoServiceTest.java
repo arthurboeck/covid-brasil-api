@@ -38,11 +38,11 @@ public class BrasilIoServiceTest extends UnitBaseTest {
     @Test
     @DisplayName("Deve Retornar Sucesso Feign Client")
     void deveRetornarBrasiolIoComSucesso() throws NotFoundException {
-        BrasilIoDTO retornoFeignClient = new BrasilIoDTO(List.of(retornoSucessoDto));
+        BrasilIoDTO retornoFeignClient = new BrasilIoDTO(List.of(retornoCovidDataDto));
         doReturn(retornoFeignClient).when(iBrasilIoClient).getCovidData(anyString(), anyString(), anyString(), anyString());
 
         CovidDataDTO retorno = brasilIoService.obterDadosCovid("A", "A");
-        assertEquals(retorno, retornoSucessoDto);
+        assertEquals(retorno, retornoCovidDataDto);
     }
 
     @Test
