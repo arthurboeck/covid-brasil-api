@@ -13,7 +13,7 @@ import java.time.LocalDate;
 public class UnitBaseTest {
 
     public static CovidDataDTO retornoSucesso =
-            new CovidDataDTO("RS", "Alegrete", 123L, 123L, LocalDate.now(), "202212", 1222L, 12000L, 100L, BigDecimal.ONE, LocalDate.now(), BigDecimal.TEN, 1L, 2L, 3L);
+            new CovidDataDTO(1,"RS", "Alegrete", 123L, 123L, LocalDate.now(), "202212", 1222L, 12000L, 100L, BigDecimal.ONE, LocalDate.now(), BigDecimal.TEN, 1L, 2L, 3L);
 
 
     public String toJson(Object object) throws IOException {
