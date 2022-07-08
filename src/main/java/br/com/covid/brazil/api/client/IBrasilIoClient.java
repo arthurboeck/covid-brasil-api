@@ -7,10 +7,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestParam;
 
-//    @FeignClient(url = "https://api.brasil.io/v1/dataset/covid19/", value = "brasilIoApi")
 @FeignClient(url = "${service.brasilIoApi.url}", value = "brasilIoApi")
 interface IBrasilIoClient {
-
     @GetMapping(path = "caso_full/data/", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
     BrasilIoDTO getCovidData(@RequestHeader(HttpHeaders.AUTHORIZATION) String token,
                              @RequestParam("is_last") String ehUltimaAtualizacao,
