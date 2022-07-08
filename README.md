@@ -1,4 +1,5 @@
 # covid-brasil-api
+
 Responsável por retornar dados relacionados ao avanço do covid no brasil.
 
 ### Dependencias do Projeto :wrench:
@@ -48,3 +49,4 @@ Enquanto a aplicação estiver executando, as URLs abaixo serão disponibilizada
 - Swagger: `http://localhost:8080/swagger-ui.html`
 - Swagger Resources `http://localhost:8080/swagger-resources`
 - Aplication URL: `http://localhost:8080/api/v1/`
+- H2 console: `http://localhost:8080/h2-console`

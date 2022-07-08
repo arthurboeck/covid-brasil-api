@@ -1,11 +1,11 @@
-package br.com.covid.brazil.api.dto;
+package br.com.covid.brazil.api.model;
 
-import com.fasterxml.jackson.annotation.JsonAlias;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import javax.persistence.*;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
@@ -13,52 +13,57 @@ import java.time.LocalDate;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class CovidDataDTO {
+@Entity
+@Table
+public class CovidData {
 
+    @Id
+    @Column
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 
-    @JsonAlias({"state"})
+    @Column
     private String uf;
 
-    @JsonAlias({"city"})
+    @Column
     private String municipio;
 
-    @JsonAlias({"city_ibge_code"})
+    @Column
     private Long codigoIbgeMunicipio;
 
-    @JsonAlias({"order_for_place"})
+    @Column
     private Long rankingMunicipio;
 
-    @JsonAlias({"date"})
+    @Column
     private LocalDate dataColetaDados;
 
-    @JsonAlias({"epidemiological_week"})
+    @Column
     private String semanaEpidemiologica;
 
-    @JsonAlias({"estimated_population"})
+    @Column
     private Long populacaoEstimada;
 
-    @JsonAlias({"estimated_population_2019"})
+    @Column
     private Long populacaoEstimada2019;
 
-    @JsonAlias({"last_available_confirmed"})
+    @Column
     private Long casosConfirmadosUltimoDia;
 
-    @JsonAlias({"last_available_confirmed_per_100k_inhabitants"})
+    @Column
     private BigDecimal casosConfirmadosUltimoDiaPor100kHabitantes;
 
-    @JsonAlias({"last_available_date"})
+    @Column
     private LocalDate dataDado;
 
-    @JsonAlias({"last_available_death_rate"})
+    @Column
     private BigDecimal taxaMortalidadeUltimoDia;
 
-    @JsonAlias({"last_available_deaths"})
+    @Column
     private Long mortesUltimoDia;
 
-    @JsonAlias({"new_confirmed"})
+    @Column
     private Long novosCasos;
 
-    @JsonAlias({"new_deaths"})
+    @Column
     private Long novasMortes;
 }
