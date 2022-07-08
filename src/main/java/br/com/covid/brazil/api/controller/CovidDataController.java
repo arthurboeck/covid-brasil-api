@@ -1,7 +1,8 @@
 package br.com.covid.brazil.api.controller;
 
+import br.com.covid.brazil.api.client.IBrasilIoService;
 import br.com.covid.brazil.api.dto.CovidDataDTO;
-import br.com.covid.brazil.api.service.CovidDataService;
+import br.com.covid.brazil.api.service.ICovidDataService;
 import io.swagger.annotations.*;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeToken;
@@ -21,7 +22,10 @@ import java.util.List;
 public class CovidDataController {
 
     @Autowired
-    CovidDataService covidDataService;
+    ICovidDataService iCovidDataService;
+
+    @Autowired
+    IBrasilIoService iBrasilIoService;
 
     @Autowired
     ModelMapper mapper;
@@ -33,7 +37,7 @@ public class CovidDataController {
             @ApiResponse(code = 400, message = "Bad Request"),
             @ApiResponse(code = 500, message = "Internal Error")})
     public List<CovidDataDTO> getAllCovidData() {
-        return mapper.map(covidDataService.getAllCovidData(),
+        return mapper.map(iCovidDataService.getAllCovidData(),
                 new TypeToken<List<CovidDataDTO>>() {
                 }.getType());
     }
@@ -45,7 +49,7 @@ public class CovidDataController {
             @ApiResponse(code = 400, message = "Bad Request"),
             @ApiResponse(code = 500, message = "Internal Error")})
     public CovidDataDTO getCovidData(@PathVariable("id") int id) {
-        return mapper.map(covidDataService.getCovidDataById(id), CovidDataDTO.class);
+        return mapper.map(iCovidDataService.getCovidDataById(id), CovidDataDTO.class);
     }
 
     @DeleteMapping("/covid/{id}")
@@ -55,10 +59,10 @@ public class CovidDataController {
             @ApiResponse(code = 400, message = "Bad Request"),
             @ApiResponse(code = 500, message = "Internal Error")})
     public void deleteCovidData(@PathVariable("id") int id) {
-        covidDataService.delete(id);
+        iCovidDataService.delete(id);
     }
 
-    @PostMapping("/covid")
+    @GetMapping("/covid/externo")
     @ApiOperation(value = "Salvar os detalhes de um dado sobre o covid por municipio específico")
     @ApiResponses(value = {
             @ApiResponse(code = 200, message = "Success"),
@@ -72,7 +76,9 @@ public class CovidDataController {
             @NotNull(message = "Municipio não pode ser null/vazio") @NotBlank(message = "Municipio não pode ser null/vazio")
             @RequestParam(name = "municipio") String municipio) {
         try {
-            return ResponseEntity.ok(mapper.map(covidDataService.obterDadosCovid(uf, municipio), CovidDataDTO.class));
+            final var covidDataDTO = iBrasilIoService.obterDadosCovid(uf, municipio);
+            iCovidDataService.salvarHistoricoConsulta(covidDataDTO);
+            return ResponseEntity.ok(covidDataDTO);
         } catch (Exception e) {
             return ResponseEntity.notFound().build();
         }
