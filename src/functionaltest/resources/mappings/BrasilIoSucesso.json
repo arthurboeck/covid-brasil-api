@@ -17,39 +17,39 @@
       "city": {
         "matches": "Alegrete"
       }
+    }
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Content-Type": "application/json"
     },
-    "response": {
-      "status": 200,
-      "headers": {
-        "Content-Type": "application/json"
-      },
-      "jsonBody": {
-        "count": 1,
-        "next": null,
-        "previous": null,
-        "results": [
-          {
-            "city": "Alegrete",
-            "city_ibge_code": 4300406,
-            "date": "2022-03-24",
-            "epidemiological_week": 202212,
-            "estimated_population": 73028,
-            "estimated_population_2019": 73589,
-            "is_last": true,
-            "is_repeated": false,
-            "last_available_confirmed": 15009,
-            "last_available_confirmed_per_100k_inhabitants": 20552.39086,
-            "last_available_date": "2022-03-24",
-            "last_available_death_rate": 0.0216,
-            "last_available_deaths": 324,
-            "new_confirmed": 36,
-            "new_deaths": 0,
-            "order_for_place": 723,
-            "place_type": "city",
-            "state": "RS"
-          }
-        ]
-      }
+    "jsonBody": {
+      "count": 1,
+      "next": null,
+      "previous": null,
+      "results": [
+        {
+          "city": "Alegrete",
+          "city_ibge_code": 4300406,
+          "date": "2022-03-24",
+          "epidemiological_week": 202212,
+          "estimated_population": 73028,
+          "estimated_population_2019": 73589,
+          "is_last": true,
+          "is_repeated": false,
+          "last_available_confirmed": 15009,
+          "last_available_confirmed_per_100k_inhabitants": 20552.39086,
+          "last_available_date": "2022-03-24",
+          "last_available_death_rate": 0.0216,
+          "last_available_deaths": 324,
+          "new_confirmed": 36,
+          "new_deaths": 0,
+          "order_for_place": 723,
+          "place_type": "city",
+          "state": "RS"
+        }
+      ]
     }
   }
 }
