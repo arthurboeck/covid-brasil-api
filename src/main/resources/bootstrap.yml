@@ -40,7 +40,7 @@ spring:
     generate-ddl: true
     show-sql: true
 
-#logging:
-#  level:
-#    root: WARN
-#    org.springframework: WARN
+logging:
+  level:
+    root: WARN
+    org.springframework: WARN

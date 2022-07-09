@@ -1,5 +1,5 @@
 service:
-  BrazilIoApi:
+  brasilIoApi:
     url: http://localhost:${wiremock.server.port}
     token: AAAAAAA
 
@@ -10,22 +10,33 @@ spring:
       group: covid
       name: covid-brazil-data-api
 
-    datasource:
-      driver-class-name: org.h2.Driver
-      url: jdbc:h2:mem:DATA;MODE=Oracle;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE;
-      username: sa
-      password:
+  datasource:
+    driver-class-name: org.h2.Driver
+    url: jdbc:h2:mem:DATA;MODE=Oracle;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE;
+    username: sa
+    password:
 
-    jpa:
-      database-platform: org.hibernate.dialect.H2Dialect
-      properties:
-        hibernate:
-          show_sql: false
-          use_sql_comments: false
-          format_sql: false
-          enable_lazy_load_no_trans: true
+  h2:
+    console:
+      enabled: true
+      path: /h2-console
+      settings:
+        trace: false
+        web-allow-others: false
+
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
+    properties:
       hibernate:
-        ddl-auto: none
+        show_sql: false
+        use_sql_comments: false
+        format_sql: true
+        enable_lazy_load_no_trans: true
+        generate_statistics: true
+    hibernate:
+      ddl-auto: create-drop
+    generate-ddl: true
+    show-sql: true
 
 logging:
   level:

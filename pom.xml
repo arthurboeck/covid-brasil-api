@@ -152,7 +152,7 @@
                     <excludes>
                         <exclude>**/Application.java</exclude>
                         <exclude>**/SwaggerConfig.java</exclude>
-                        <exclude>**/ModelMapperConfig.java</exclude>
+                        <exclude>**/model/**.java</exclude>
                         <exclude>**/*DTO.java</exclude>
                     </excludes>
                 </configuration>

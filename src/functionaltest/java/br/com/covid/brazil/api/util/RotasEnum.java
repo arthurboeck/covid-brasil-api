@@ -5,7 +5,8 @@ import lombok.Getter;
 
 @Getter
 @AllArgsConstructor
-public enum UrlEnumTest {
+public enum RotasEnum {
+
     OBTER_DADOS_COVID_BRASIL_IO("/api/v1/covid/externo"),
     PERSISTIR_DADOS_COVID_BRASIL_IO("/api/v1/covid"),
     LISTAR_TODAS_CONSULTAS("/api/v1/covid"),

@@ -15,7 +15,6 @@ public class BrasilIoService implements IBrasilIoService {
     private final String token;
 
     public BrasilIoService(
-//            @Value("Token 49e7a820ece5e243b1c47c8b31087626b685e33e") String token,
             @Value("Token ${service.brasilIoApi.token}") String token,
             IBrasilIoClient iBrasilIoClient) {
         this.token = token;

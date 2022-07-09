@@ -1,5 +1,7 @@
 # covid-brasil-api
-Responsável por retornar dados relacionados ao avanço do covid no brasil.
+
+Responsável por retornar dados relacionados ao avanço do covid no brasil, por meio de integração com API disponibilizada
+pelo [BrasilIo](https://brasil.io/home/).
 
 ### Dependencias do Projeto :wrench:
 
@@ -9,6 +11,7 @@ Responsável por retornar dados relacionados ao avanço do covid no brasil.
 - [Lombok](https://projectlombok.org/setup/maven)
 - [WireMock](https://wiremock.org/docs/spring-boot/)
 - [Mockito](https://site.mockito.org/)
+- [H2](https://www.h2database.com/html/quickstart.html)
 
 ### URls
 
