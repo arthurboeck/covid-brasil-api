@@ -18,6 +18,7 @@ import java.util.Optional;
 
 import static org.assertj.core.api.AssertionsForInterfaceTypes.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.Mockito.doNothing;
@@ -83,5 +84,6 @@ class CovidDataServiceTest extends UnitBaseTest {
     void deveDeletarHistorico() {
         doNothing().when(covidDataRepository).deleteById(anyInt());
         covidDataService.delete(1);
+        assertTrue(true);
     }
 }

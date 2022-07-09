@@ -24,9 +24,7 @@ public class MatcherConstantes {
                 jsonPath(POPULACAO_ESTIMADA_BODY, is(retornoSucesso.getPopulacaoEstimada().intValue())),
                 jsonPath(POPULACAO_ESTIMADA_2019_BODY, is(retornoSucesso.getPopulacaoEstimada2019().intValue())),
                 jsonPath(CASOS_CONFIRMADOS_ULTIMO_DIA_BODY, is(retornoSucesso.getCasosConfirmadosUltimoDia().intValue())),
-                jsonPath(CASOS_CONFIRMADOS_ULTIMO_DIA_POR_100_K_HABITANTES_BODY, is(retornoSucesso.getCasosConfirmadosUltimoDiaPor100kHabitantes().intValue())),
                 jsonPath(DATA_DADO_BODY, is(retornoSucesso.getDataDado().format(DateTimeFormatter.ISO_LOCAL_DATE))),
-                jsonPath(TAXA_MORTALIDADE_ULTIMO_DIA_BODY, is(retornoSucesso.getTaxaMortalidadeUltimoDia().intValue())),
                 jsonPath(MORTES_ULTIMO_DIA_BODY, is(retornoSucesso.getMortesUltimoDia().intValue())),
                 jsonPath(NOVOS_CASOS_BODY, is(retornoSucesso.getNovosCasos().intValue())),
                 jsonPath(NOVAS_MORTES_BODY, is(retornoSucesso.getNovasMortes().intValue()))
@@ -44,9 +42,7 @@ public class MatcherConstantes {
                 jsonPath(format("$[%d].%s", posicao, POPULACAO_ESTIMADA_BODY), is(retornoSucesso.getPopulacaoEstimada().intValue())),
                 jsonPath(format("$[%d].%s", posicao, POPULACAO_ESTIMADA_2019_BODY), is(retornoSucesso.getPopulacaoEstimada2019().intValue())),
                 jsonPath(format("$[%d].%s", posicao, CASOS_CONFIRMADOS_ULTIMO_DIA_BODY), is(retornoSucesso.getCasosConfirmadosUltimoDia().intValue())),
-                jsonPath(format("$[%d].%s", posicao, CASOS_CONFIRMADOS_ULTIMO_DIA_POR_100_K_HABITANTES_BODY), is(retornoSucesso.getCasosConfirmadosUltimoDiaPor100kHabitantes().intValue())),
                 jsonPath(format("$[%d].%s", posicao, DATA_DADO_BODY), is(retornoSucesso.getDataDado().format(DateTimeFormatter.ISO_LOCAL_DATE))),
-                jsonPath(format("$[%d].%s", posicao, TAXA_MORTALIDADE_ULTIMO_DIA_BODY), is(retornoSucesso.getTaxaMortalidadeUltimoDia().intValue())),
                 jsonPath(format("$[%d].%s", posicao, MORTES_ULTIMO_DIA_BODY), is(retornoSucesso.getMortesUltimoDia().intValue())),
                 jsonPath(format("$[%d].%s", posicao, NOVOS_CASOS_BODY), is(retornoSucesso.getNovosCasos().intValue())),
                 jsonPath(format("$[%d].%s", posicao, NOVAS_MORTES_BODY), is(retornoSucesso.getNovasMortes().intValue()))
