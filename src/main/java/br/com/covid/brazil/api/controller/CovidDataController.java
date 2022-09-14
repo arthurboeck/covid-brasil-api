@@ -7,7 +7,6 @@ import br.com.covid.brazil.api.service.ICovidDataService;
 import io.swagger.annotations.*;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeToken;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -25,14 +24,15 @@ import static java.lang.String.format;
 @Validated
 public class CovidDataController {
 
-    @Autowired
-    ICovidDataService iCovidDataService;
+    private ICovidDataService iCovidDataService;
+    private IBrasilIoService iBrasilIoService;
+    private ModelMapper mapper;
 
-    @Autowired
-    IBrasilIoService iBrasilIoService;
-
-    @Autowired
-    ModelMapper mapper;
+    public CovidDataController(ICovidDataService iCovidDataService, IBrasilIoService iBrasilIoService, ModelMapper mapper) {
+        this.iCovidDataService = iCovidDataService;
+        this.iBrasilIoService = iBrasilIoService;
+        this.mapper = mapper;
+    }
 
     @GetMapping("/covid")
     @ApiOperation(value = "Buscar todos os dados sobre o covid por municipio do banco de dados")
