@@ -13,6 +13,10 @@ pelo [BrasilIo](https://brasil.io/home/).
 - [Mockito](https://site.mockito.org/)
 - [H2](https://www.h2database.com/html/quickstart.html)
 
+### Diagrama de Classe
+
+![alt text](ClassDiagram.png)
+
 ### URls
 
 Heroku URL: https://covid-brazil-data-api.herokuapp.com/

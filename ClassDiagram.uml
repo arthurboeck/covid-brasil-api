@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement>C:/Users/arthur_boeck/Desktop/Sistemas/covid-api/src/main/java/br/com/covid/brazil/api</OriginalElement>
+  <nodes>
+    <node x="-92.1517899022715" y="209.3260051491676">br.com.covid.brazil.api.service.ICovidDataService</node>
+    <node x="364.6672629210577" y="121.83740975548412">br.com.covid.brazil.api.client.BrasilIoService</node>
+    <node x="295.3948425041234" y="253.99207318604505">br.com.covid.brazil.api.client.IBrasilIoService</node>
+    <node x="69.71119279175457" y="461.86180646296384">br.com.covid.brazil.api.controller.CovidDataController</node>
+    <node x="721.5172741283427" y="266.0374097554841">br.com.covid.brazil.api.client.IBrasilIoClient</node>
+    <node x="-314.09134684471053" y="63.09537233916558">br.com.covid.brazil.api.repository.CovidDataRepository</node>
+    <node x="-20.273699785886947" y="-6.086980602010954">br.com.covid.brazil.api.service.CovidDataService</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="br.com.covid.brazil.api.service.CovidDataService" target="br.com.covid.brazil.api.repository.CovidDataRepository" relationship="TO_ONE">
+      <point x="-161.5" y="12.682352941176532" />
+      <point x="93.0" y="0.0" />
+    </edge>
+    <edge source="br.com.covid.brazil.api.service.CovidDataService" target="br.com.covid.brazil.api.service.CovidDataService" relationship="DEPENDENCY">
+      <point x="0.0" y="-71.0" />
+      <point x="141.22630021411305" y="-23.586980602010954" />
+      <point x="372.1672629210577" y="-23.586980602010954" />
+      <point x="372.1672629210577" y="64.91301939798905" />
+      <point x="161.5" y="0.0" />
+    </edge>
+    <edge source="br.com.covid.brazil.api.controller.CovidDataController" target="br.com.covid.brazil.api.service.ICovidDataService" relationship="TO_ONE">
+      <point x="-214.0" y="-71.0" />
+      <point x="7.862982694026073" y="71.0" />
+    </edge>
+    <edge source="br.com.covid.brazil.api.service.CovidDataService" target="br.com.covid.brazil.api.service.ICovidDataService" relationship="REALIZATION">
+      <point x="-71.8780901163845" y="71.0" />
+      <point x="0.0" y="-71.0" />
+    </edge>
+    <edge source="br.com.covid.brazil.api.client.BrasilIoService" target="br.com.covid.brazil.api.client.IBrasilIoClient" relationship="TO_ONE">
+      <point x="152.5" y="0.0" />
+      <point x="893.5172741283427" y="148.83740975548412" />
+      <point x="0.0" y="-27.0" />
+    </edge>
+    <edge source="br.com.covid.brazil.api.controller.CovidDataController" target="br.com.covid.brazil.api.client.IBrasilIoService" relationship="TO_ONE">
+      <point x="156.68364971236883" y="-71.0" />
+      <point x="0.0" y="27.0" />
+    </edge>
+    <edge source="br.com.covid.brazil.api.client.BrasilIoService" target="br.com.covid.brazil.api.client.IBrasilIoService" relationship="REALIZATION">
+      <point x="-69.27242041693432" y="27.0" />
+      <point x="0.0" y="-27.0" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic" zoom="0.8252427184466019" showDependencies="true" x="141.22630021411305" y="69.0" />
+  <SelectedNodes>
+    <node>br.com.covid.brazil.api.repository.CovidDataRepository</node>
+  </SelectedNodes>
+  <Categories>
+    <Category>Methods</Category>
+  </Categories>
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+

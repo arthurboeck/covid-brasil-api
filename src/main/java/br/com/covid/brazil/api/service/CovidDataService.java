@@ -4,7 +4,6 @@ import br.com.covid.brazil.api.dto.CovidDataDTO;
 import br.com.covid.brazil.api.model.CovidData;
 import br.com.covid.brazil.api.repository.CovidDataRepository;
 import org.modelmapper.ModelMapper;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
@@ -15,11 +14,13 @@ import java.util.List;
 @Service
 public class CovidDataService implements ICovidDataService {
 
-    @Autowired
-    CovidDataRepository covidDataRepository;
+    private CovidDataRepository covidDataRepository;
+    private ModelMapper mapper;
 
-    @Autowired
-    ModelMapper mapper;
+    public CovidDataService(CovidDataRepository covidDataRepository, ModelMapper mapper) {
+        this.covidDataRepository = covidDataRepository;
+        this.mapper = mapper;
+    }
 
     public List<CovidData> getAllCovidData() {
         List<CovidData> covidDataList = new ArrayList<>();
