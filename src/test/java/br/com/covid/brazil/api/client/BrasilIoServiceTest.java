@@ -23,7 +23,7 @@ import static org.mockito.Mockito.doThrow;
 
 
 @ExtendWith(MockitoExtension.class)
-public class BrasilIoServiceTest extends UnitBaseTest {
+class BrasilIoServiceTest extends UnitBaseTest {
 
     @Mock
     private IBrasilIoClient iBrasilIoClient;
