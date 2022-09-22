@@ -202,7 +202,7 @@ class CovidDataControllerTest extends UnitBaseTest {
     }
 
     @Test
-    @DisplayName("Deve Listar Duas Garantias Consulta Existente")
+    @DisplayName("Deve Listar Duas Consultas Existente")
     void deveListarApenasDuasConsultaExistente() throws Exception {
         doReturn(List.of(retornoCovidDataModel, retornoCovidDataModel)).when(iCovidDataService).getAllCovidData();
         doReturn(List.of(retornoCovidDataDto, retornoCovidDataDto)).when(mapper)
