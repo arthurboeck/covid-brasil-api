@@ -1,6 +1,7 @@
 package br.com.covid.brazil.api.client;
 
 import br.com.covid.brazil.api.dto.CovidDataDTO;
+import br.com.covid.brazil.api.logger.LogExecutionTime;
 import javassist.NotFoundException;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -22,6 +23,7 @@ public class BrasilIoService implements IBrasilIoService {
     }
 
     @Override
+    @LogExecutionTime
     public CovidDataDTO obterDadosCovid(String uf, String municipio) throws NotFoundException {
         try {
             return iBrasilIoClient.getCovidData(token, "True", uf.toUpperCase(), capitalize(municipio)).getResults().get(0);

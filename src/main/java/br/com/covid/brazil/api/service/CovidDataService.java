@@ -1,6 +1,7 @@
 package br.com.covid.brazil.api.service;
 
 import br.com.covid.brazil.api.dto.CovidDataDTO;
+import br.com.covid.brazil.api.logger.LogExecutionTime;
 import br.com.covid.brazil.api.model.CovidData;
 import br.com.covid.brazil.api.repository.CovidDataRepository;
 import org.modelmapper.ModelMapper;
@@ -22,12 +23,14 @@ public class CovidDataService implements ICovidDataService {
         this.mapper = mapper;
     }
 
+    @LogExecutionTime
     public List<CovidData> getAllCovidData() {
         List<CovidData> covidDataList = new ArrayList<>();
         covidDataRepository.findAll().forEach(covidDataList::add);
         return covidDataList;
     }
 
+    @LogExecutionTime
     public CovidData getCovidDataById(int id) {
         final var covidData = covidDataRepository.findById(id);
         if (covidData.isPresent()) {
@@ -38,14 +41,17 @@ public class CovidDataService implements ICovidDataService {
         );
     }
 
+    @LogExecutionTime
     public CovidData saveOrUpdate(CovidData covidData) {
         return covidDataRepository.save(covidData);
     }
 
+    @LogExecutionTime
     public void delete(int id) {
         covidDataRepository.deleteById(id);
     }
 
+    @LogExecutionTime
     public CovidData salvarHistoricoConsulta(CovidDataDTO covidDataDTO) {
         final var covidData = this.mapper.map(covidDataDTO, CovidData.class);
         return saveOrUpdate(covidData);
