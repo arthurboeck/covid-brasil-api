@@ -2,11 +2,14 @@ package br.com.covid.brazil.api.controller;
 
 import br.com.covid.brazil.api.client.IBrasilIoService;
 import br.com.covid.brazil.api.dto.CovidDataDTO;
+import br.com.covid.brazil.api.logger.LogExecutionTime;
 import br.com.covid.brazil.api.model.CovidData;
 import br.com.covid.brazil.api.service.ICovidDataService;
 import io.swagger.annotations.*;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeToken;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -23,6 +26,8 @@ import static java.lang.String.format;
 @Api(tags = "Dados Covid Brasil", value = "Dados Sobre o Covid por Municipio")
 @Validated
 public class CovidDataController {
+
+    private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
     private ICovidDataService iCovidDataService;
     private IBrasilIoService iBrasilIoService;
@@ -41,7 +46,13 @@ public class CovidDataController {
             @ApiResponse(code = 400, message = "Bad Request"),
             @ApiResponse(code = 404, message = "Not Found"),
             @ApiResponse(code = 500, message = "Internal Error")})
+    @LogExecutionTime
     public ResponseEntity<List<CovidDataDTO>> getAllCovidData() {
+        logger.trace("A TRACE Message");
+        logger.debug("A DEBUG Message");
+        logger.info("An INFO Message");
+        logger.warn("A WARN Message");
+        logger.error("An ERROR Message");
         try {
             List<CovidDataDTO> resultList = mapper.map(iCovidDataService.getAllCovidData(),
                     new TypeToken<List<CovidDataDTO>>() {
@@ -60,6 +71,7 @@ public class CovidDataController {
             @ApiResponse(code = 400, message = "Bad Request"),
             @ApiResponse(code = 404, message = "Not Found"),
             @ApiResponse(code = 500, message = "Internal Error")})
+    @LogExecutionTime
     public ResponseEntity<CovidDataDTO> getCovidDataById(@PathVariable("id") int id) {
         try {
             return ResponseEntity.ok(mapper.map(iCovidDataService.getCovidDataById(id), CovidDataDTO.class));
@@ -74,6 +86,7 @@ public class CovidDataController {
             @ApiResponse(code = 204, message = "Success"),
             @ApiResponse(code = 400, message = "Bad Request"),
             @ApiResponse(code = 500, message = "Internal Error")})
+    @LogExecutionTime
     public ResponseEntity<Object> deleteCovidData(@PathVariable("id") int id) {
         try {
             iCovidDataService.delete(id);
@@ -90,6 +103,7 @@ public class CovidDataController {
             @ApiResponse(code = 400, message = "Bad Request"),
             @ApiResponse(code = 404, message = "Not Found"),
             @ApiResponse(code = 500, message = "Internal Error")})
+    @LogExecutionTime
     public ResponseEntity<CovidDataDTO> obterDadosCovidBrasilIO(
             @ApiParam(value = "UF a ser pesquisada", required = true)
             @NotNull(message = "UF não pode ser null/vazia") @NotBlank(message = "UF não pode ser null/vazia")
@@ -113,6 +127,7 @@ public class CovidDataController {
             @ApiResponse(code = 400, message = "Bad Request"),
             @ApiResponse(code = 404, message = "Not Found"),
             @ApiResponse(code = 500, message = "Internal Error")})
+    @LogExecutionTime
     public ResponseEntity<CovidDataDTO> salvarDadosCovid(
             @ApiParam(value = "UF a ser pesquisada", required = true)
             @NotNull(message = "UF não pode ser null/vazia") @NotBlank(message = "UF não pode ser null/vazia")
