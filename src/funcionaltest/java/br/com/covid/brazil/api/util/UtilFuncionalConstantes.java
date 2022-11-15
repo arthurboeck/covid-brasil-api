@@ -1,6 +1,6 @@
 package br.com.covid.brazil.api.util;
 
-public class UtilFunctionalConstantes {
+public class UtilFuncionalConstantes {
     public static final String KEY_ID = "{id}";
 
     public static final String ID_PARAM_BODY = "id";

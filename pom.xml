@@ -215,7 +215,7 @@
                                 <configuration>
                                     <resources>
                                         <resource>
-                                            <directory>src/functionaltest/resources</directory>
+                                            <directory>src/funcionaltest/resources</directory>
                                         </resource>
                                     </resources>
                                 </configuration>
@@ -228,7 +228,7 @@
                                 </goals>
                                 <configuration>
                                     <sources>
-                                        <source>src/functionaltest/java</source>
+                                        <source>src/funcionaltest/java</source>
                                     </sources>
                                 </configuration>
                             </execution>

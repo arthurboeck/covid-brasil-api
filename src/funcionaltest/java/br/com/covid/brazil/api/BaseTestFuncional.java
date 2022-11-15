@@ -12,10 +12,10 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 
 @AutoConfigureMockMvc
-@ActiveProfiles("it")
+@ActiveProfiles("funcional")
 @AutoConfigureWireMock(port = 0, stubs = "classpath*:/mappings/**/*.json")
 @SpringBootTest(classes = {Application.class}, webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-public class FunctionalBaseTest {
+public class BaseTestFuncional {
 
     @Autowired
     private MockMvc mvc;

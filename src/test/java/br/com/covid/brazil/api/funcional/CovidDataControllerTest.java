@@ -1,4 +1,4 @@
-package br.com.covid.brazil.api.controller;
+package br.com.covid.brazil.api.funcional;
 
 import br.com.covid.brazil.api.client.IBrasilIoService;
 import br.com.covid.brazil.api.dto.CovidDataDTO;

@@ -5,13 +5,14 @@ import org.springframework.test.web.servlet.ResultMatcher;
 
 import java.time.format.DateTimeFormatter;
 
-import static br.com.covid.brazil.api.util.UtilFunctionalConstantes.*;
+import static br.com.covid.brazil.api.util.UtilFuncionalConstantes.*;
 import static java.lang.String.format;
 import static org.hamcrest.Matchers.is;
 import static org.springframework.test.web.servlet.ResultMatcher.matchAll;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 
-public class MatchersFunctionalConstantes {
+public class MatchersConstantes {
+
     public static <T> ResultMatcher assertBodyDefaultData(CovidDataDTO retornoSucesso) {
         return matchAll(
                 (jsonPath(UF_PARAM_BODY, is(retornoSucesso.getUf()))),
@@ -31,7 +32,6 @@ public class MatchersFunctionalConstantes {
     }
 
     public static <T> ResultMatcher assertBodyDefaultDataPorPosicao(int posicao, CovidDataDTO retornoSucesso) {
-
         return matchAll(
                 (jsonPath(format("$[%d].%s", posicao, UF_PARAM_BODY), is(retornoSucesso.getUf()))),
                 jsonPath(format("$[%d].%s", posicao, MUNICIPIO_PARAM_BODY), is(retornoSucesso.getMunicipio())),

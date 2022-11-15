@@ -1,13 +1,13 @@
-package br.com.covid.brazil.api.controller;
+package br.com.covid.brazil.api.funcional;
 
-import br.com.covid.brazil.api.FunctionalBaseTest;
+import br.com.covid.brazil.api.BaseTestFuncional;
 import org.junit.jupiter.api.*;
 import org.springframework.http.MediaType;
 
-import static br.com.covid.brazil.api.util.MatchersFunctionalConstantes.assertBodyDefaultData;
-import static br.com.covid.brazil.api.util.MatchersFunctionalConstantes.assertBodyDefaultDataPorPosicao;
+import static br.com.covid.brazil.api.util.MatchersConstantes.assertBodyDefaultData;
+import static br.com.covid.brazil.api.util.MatchersConstantes.assertBodyDefaultDataPorPosicao;
 import static br.com.covid.brazil.api.util.RotasEnum.*;
-import static br.com.covid.brazil.api.util.UtilFunctionalConstantes.*;
+import static br.com.covid.brazil.api.util.UtilFuncionalConstantes.*;
 import static java.lang.String.format;
 import static org.hamcrest.Matchers.hasSize;
 import static org.hamcrest.Matchers.is;
@@ -16,12 +16,12 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
-class CovidDataControllerFunctionalTest extends FunctionalBaseTest {
+class ObterDadosCovidFuncionalTest extends BaseTestFuncional {
 
     @Test
     @Order(1)
     @Tag("functional")
-    @DisplayName("Deve Realizar Consulta Externa")
+    @DisplayName("Deve Realizar Consulta Externa na Brasil.IO")
     void deveRetornarDadosDoMunicipio() throws Exception {
         getMvc().perform(get(OBTER_DADOS_COVID_BRASIL_IO.getUrl())
                         .contentType(MediaType.APPLICATION_JSON)
@@ -35,7 +35,7 @@ class CovidDataControllerFunctionalTest extends FunctionalBaseTest {
     @Test
     @Order(2)
     @Tag("functional")
-    @DisplayName("Deve Listar Consultas Feitas no Banco")
+    @DisplayName("Deve Listar Consultas Persistidas no Banco")
     void deveListarTodos() throws Exception {
         getMvc().perform(get(LISTAR_TODAS_CONSULTAS.getUrl())
                         .contentType(MediaType.APPLICATION_JSON)
@@ -85,7 +85,7 @@ class CovidDataControllerFunctionalTest extends FunctionalBaseTest {
     @Test
     @Order(5)
     @Tag("functional")
-    @DisplayName("Deve Persistir Consulta")
+    @DisplayName("Deve Persistir Consulta ao Brasil.IO")
     void devePersistirDadosDoMunicipio() throws Exception {
         getMvc().perform(post(PERSISTIR_DADOS_COVID_BRASIL_IO.getUrl())
                         .contentType(MediaType.APPLICATION_JSON)
