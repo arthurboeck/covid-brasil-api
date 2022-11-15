@@ -5,7 +5,7 @@ import org.springframework.test.web.servlet.ResultMatcher;
 
 import java.time.format.DateTimeFormatter;
 
-import static br.com.covid.brazil.api.util.UtilFuncionalConstantes.*;
+import static br.com.covid.brazil.api.util.TesteConstantes.*;
 import static java.lang.String.format;
 import static org.hamcrest.Matchers.is;
 import static org.springframework.test.web.servlet.ResultMatcher.matchAll;

@@ -7,7 +7,7 @@ import org.springframework.http.MediaType;
 import static br.com.covid.brazil.api.util.MatchersConstantes.assertBodyDefaultData;
 import static br.com.covid.brazil.api.util.MatchersConstantes.assertBodyDefaultDataPorPosicao;
 import static br.com.covid.brazil.api.util.RotasEnum.*;
-import static br.com.covid.brazil.api.util.UtilFuncionalConstantes.*;
+import static br.com.covid.brazil.api.util.TesteConstantes.*;
 import static java.lang.String.format;
 import static org.hamcrest.Matchers.hasSize;
 import static org.hamcrest.Matchers.is;
