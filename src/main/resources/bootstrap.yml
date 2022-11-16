@@ -1,9 +1,9 @@
 service:
   brasilIoApi:
-    url: ${BRASIL_IO_API_URL}
-    token: ${BRASIL_IO_API_KEY}
-#    token: 49e7a820ece5e243b1c47c8b31087626b685e33e
-#    url: https://api.brasil.io/v1/dataset/covid19/
+#    url: ${BRASIL_IO_API_URL}
+#    token: ${BRASIL_IO_API_KEY}
+    token: 49e7a820ece5e243b1c47c8b31087626b685e33e
+    url: https://api.brasil.io/v1/dataset/covid19/
 
 spring:
   main:
