@@ -26,7 +26,7 @@ spring:
         enable_lazy_load_no_trans: true
         generate_statistics: true
     hibernate:
-      ddl-auto: create-drop
+      ddl-auto: create
     generate-ddl: true
     show-sql: true
 
