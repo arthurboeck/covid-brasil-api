@@ -15,7 +15,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 class PersistirDadosCovidFuncionalTest extends BaseTestFuncional {
 
     @Test
-    @Tag("functional")
+    @Tag("funcional")
     @DisplayName("Deve Persistir Consulta ao Brasil.IO")
     void devePersistirDadosDoMunicipio() throws Exception {
         getMvc().perform(post(PERSISTIR_DADOS_COVID_BRASIL_IO.getUrl())

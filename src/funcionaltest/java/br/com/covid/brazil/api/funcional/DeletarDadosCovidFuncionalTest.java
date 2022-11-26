@@ -16,7 +16,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 class DeletarDadosCovidFuncionalTest extends BaseTestFuncional {
 
     @Test
-    @Tag("functional")
+    @Tag("funcional")
     @DisplayName("Deve Deletar Por ID - Registro já existente na base")
     void deveDeletarPorId() throws Exception {
         getMvc().perform(delete(format(DELETE_CONSULTA_BY_ID.getUrl(), 10))

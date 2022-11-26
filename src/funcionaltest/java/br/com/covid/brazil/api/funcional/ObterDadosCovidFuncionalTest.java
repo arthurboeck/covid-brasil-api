@@ -1,7 +1,6 @@
 package br.com.covid.brazil.api.funcional;
 
 import br.com.covid.brazil.api.BaseTestFuncional;
-import org.hamcrest.Matchers;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -26,15 +25,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 class ObterDadosCovidFuncionalTest extends BaseTestFuncional {
 
     @Test
-    @Tag("functional")
-    @DisplayName("Deve Validar Disponibildiade - HealthCheck")
-    void deveValidarDisponibilidade() throws Exception {
-        getMvc().perform(get(ACTUATOR.getUrl()))
-                .andExpect(jsonPath(TAG_STATUS, Matchers.equalTo("UP")));
-    }
-
-    @Test
-    @Tag("functional")
+    @Tag("funcional")
     @DisplayName("Deve Validar Contrato - Obter Dados Covid Brasil.IO")
     void deveRetornarSucessoAoValidarContratoObterDadosBrasilIo() throws Exception {
         String response =
@@ -51,7 +42,7 @@ class ObterDadosCovidFuncionalTest extends BaseTestFuncional {
     }
 
     @Test
-    @Tag("functional")
+    @Tag("funcional")
     @DisplayName("Deve Realizar Consulta Externa na Brasil.IO")
     void deveRetornarDadosDoMunicipio() throws Exception {
         getMvc().perform(get(OBTER_DADOS_COVID_BRASIL_IO.getUrl())
@@ -63,7 +54,7 @@ class ObterDadosCovidFuncionalTest extends BaseTestFuncional {
     }
 
     @Test
-    @Tag("functional")
+    @Tag("funcional")
     @DisplayName("Deve Retornar Not Found - Server Error Brasil.IO")
     void deveRetornarNotFoundErroObterDadosCovidBrasilIo() throws Exception {
         getMvc().perform(get(OBTER_DADOS_COVID_BRASIL_IO.getUrl())
@@ -74,7 +65,7 @@ class ObterDadosCovidFuncionalTest extends BaseTestFuncional {
     }
 
     @Test
-    @Tag("functional")
+    @Tag("funcional")
     @DisplayName("Deve Listar Consultas Persistidas no Banco")
     void deveListarTodos() throws Exception {
         getMvc().perform(get(LISTAR_TODAS_CONSULTAS.getUrl())
@@ -88,7 +79,7 @@ class ObterDadosCovidFuncionalTest extends BaseTestFuncional {
     }
 
     @Test
-    @Tag("functional")
+    @Tag("funcional")
     @DisplayName("Deve Listar Por ID")
     void deveListarPorId() throws Exception {
         getMvc().perform(get(format(LISTAR_CONSULTA_BY_ID.getUrl(), 10))
@@ -101,7 +92,7 @@ class ObterDadosCovidFuncionalTest extends BaseTestFuncional {
     }
 
     @Test
-    @Tag("functional")
+    @Tag("funcional")
     @DisplayName("Deve Retornar NotFound Listar Por ID")
     void deveRetornarNotFoundListarPorId() throws Exception {
         getMvc().perform(get(format(LISTAR_CONSULTA_BY_ID.getUrl(), 8))
