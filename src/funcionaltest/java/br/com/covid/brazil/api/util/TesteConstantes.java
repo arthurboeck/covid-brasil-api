@@ -21,5 +21,4 @@ public class TesteConstantes {
 
     public static final String ALEGRE_PARAM = "Alegrete";
     public static final String RS_PARAM = "RS";
-
 }
