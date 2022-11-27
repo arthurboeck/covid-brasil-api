@@ -40,12 +40,12 @@ jobs:
         run: mvn clean test -Pfunctional-test surefire-report:report site
       - name: Test Report Generate
         if: always()
-        uses: actions/upload-artifact@v1
+        uses: actions/upload-artifact@v3
         with:
           name: test-report
-          path:
-            - ./target/site
-            - ./target/surefire-reports/*.dumpstream
+          path: |
+            ./target/site
+            ./target/surefire-reports/*.dumpstream
 
   build:
     name: Build and Sonar Cloud
