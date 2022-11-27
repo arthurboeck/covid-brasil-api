@@ -43,7 +43,9 @@ jobs:
         uses: actions/upload-artifact@v1
         with:
           name: test-report
-          path: ./target/site
+          path:
+            - ./target/site
+            - ./target/surefire-reports/*.dumpstream
 
   build:
     name: Build and Sonar Cloud
