@@ -7,11 +7,12 @@ import lombok.Getter;
 @AllArgsConstructor
 public enum RotasEnum {
 
+    ACTUATOR("/actuator/health"),
     OBTER_DADOS_COVID_BRASIL_IO("/api/v1/covid/externo"),
     PERSISTIR_DADOS_COVID_BRASIL_IO("/api/v1/covid"),
     LISTAR_TODAS_CONSULTAS("/api/v1/covid"),
-    LISTAR_CONSULTA_BY_ID("/api/v1/covid/{id}"),
-    DELETE_CONSULTA_BY_ID("/api/v1/covid/{id}");
+    LISTAR_CONSULTA_BY_ID("/api/v1/covid/%d"),
+    DELETE_CONSULTA_BY_ID("/api/v1/covid/%d");
 
     private final String url;
 }

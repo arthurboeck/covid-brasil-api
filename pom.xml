@@ -61,13 +61,11 @@
             <artifactId>spring-cloud-starter-bootstrap</artifactId>
         </dependency>
 
-        <!-- https://mvnrepository.com/artifact/io.springfox/springfox-swagger2 -->
         <dependency>
             <groupId>io.springfox</groupId>
             <artifactId>springfox-swagger2</artifactId>
             <version>2.9.2</version>
         </dependency>
-        <!-- https://mvnrepository.com/artifact/io.springfox/springfox-swagger-ui -->
         <dependency>
             <groupId>io.springfox</groupId>
             <artifactId>springfox-swagger-ui</artifactId>
@@ -83,7 +81,7 @@
         <dependency>
             <groupId>org.mockito</groupId>
             <artifactId>mockito-junit-jupiter</artifactId>
-            <version>4.6.1</version>
+            <version>4.8.0</version>
             <scope>test</scope>
         </dependency>
 
@@ -93,7 +91,6 @@
             <scope>test</scope>
         </dependency>
 
-        <!-- https://mvnrepository.com/artifact/com.h2database/h2 -->
         <dependency>
             <groupId>com.h2database</groupId>
             <artifactId>h2</artifactId>
@@ -104,7 +101,14 @@
         <dependency>
             <groupId>org.modelmapper</groupId>
             <artifactId>modelmapper</artifactId>
-            <version>2.4.4</version>
+            <version>3.1.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>io.rest-assured</groupId>
+            <artifactId>json-schema-validator</artifactId>
+            <version>5.2.0</version>
+            <scope>test</scope>
         </dependency>
 
     </dependencies>
@@ -190,14 +194,14 @@
                         <artifactId>maven-site-plugin</artifactId>
                         <version>3.11.0</version>
                         <configuration>
-                            <generateReports>true</generateReports>
+                            <generateReports>false</generateReports>
                         </configuration>
                     </plugin>
                     <plugin>
                         <artifactId>maven-surefire-plugin</artifactId>
                         <version>3.0.0-M5</version>
                         <configuration>
-                            <groups>functional</groups>
+                            <groups>funcional</groups>
                             <testFailureIgnore>false</testFailureIgnore>
                         </configuration>
                     </plugin>
@@ -215,7 +219,7 @@
                                 <configuration>
                                     <resources>
                                         <resource>
-                                            <directory>src/functionaltest/resources</directory>
+                                            <directory>src/funcionaltest/resources</directory>
                                         </resource>
                                     </resources>
                                 </configuration>
@@ -228,7 +232,7 @@
                                 </goals>
                                 <configuration>
                                     <sources>
-                                        <source>src/functionaltest/java</source>
+                                        <source>src/funcionaltest/java</source>
                                     </sources>
                                 </configuration>
                             </execution>

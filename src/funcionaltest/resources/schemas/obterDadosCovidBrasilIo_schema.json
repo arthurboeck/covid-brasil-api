@@ -1,0 +1,72 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "integer"
+    },
+    "uf": {
+      "type": "string"
+    },
+    "municipio": {
+      "type": "string"
+    },
+    "codigoIbgeMunicipio": {
+      "type": "integer"
+    },
+    "rankingMunicipio": {
+      "type": "integer"
+    },
+    "dataColetaDados": {
+      "type": "string"
+    },
+    "semanaEpidemiologica": {
+      "type": "string"
+    },
+    "populacaoEstimada": {
+      "type": "integer"
+    },
+    "populacaoEstimada2019": {
+      "type": "integer"
+    },
+    "casosConfirmadosUltimoDia": {
+      "type": "integer"
+    },
+    "casosConfirmadosUltimoDiaPor100kHabitantes": {
+      "type": "number"
+    },
+    "dataDado": {
+      "type": "string"
+    },
+    "taxaMortalidadeUltimoDia": {
+      "type": "number"
+    },
+    "mortesUltimoDia": {
+      "type": "integer"
+    },
+    "novosCasos": {
+      "type": "integer"
+    },
+    "novasMortes": {
+      "type": "integer"
+    }
+  },
+  "required": [
+    "id",
+    "uf",
+    "municipio",
+    "codigoIbgeMunicipio",
+    "rankingMunicipio",
+    "dataColetaDados",
+    "semanaEpidemiologica",
+    "populacaoEstimada",
+    "populacaoEstimada2019",
+    "casosConfirmadosUltimoDia",
+    "casosConfirmadosUltimoDiaPor100kHabitantes",
+    "dataDado",
+    "taxaMortalidadeUltimoDia",
+    "mortesUltimoDia",
+    "novosCasos",
+    "novasMortes"
+  ]
+}

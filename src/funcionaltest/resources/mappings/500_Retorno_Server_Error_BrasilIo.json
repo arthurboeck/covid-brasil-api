@@ -1,0 +1,32 @@
+{
+  "request": {
+    "method": "GET",
+    "urlPath": "/caso_full/data/",
+    "headers": {
+      "Authorization": {
+        "equalTo": "Token AAAAAAA"
+      }
+    },
+    "queryParameters": {
+      "is_last": {
+        "matches": "True"
+      },
+      "state": {
+        "matches": "MG"
+      },
+      "city": {
+        "matches": "Alegrete"
+      }
+    }
+  },
+  "response": {
+    "status": 500,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "jsonBody": {
+      "status": 500,
+      "message": "Server Error Brasil IO"
+    }
+  }
+}
