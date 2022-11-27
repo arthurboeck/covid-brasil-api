@@ -9,10 +9,11 @@ import org.springframework.test.context.jdbc.Sql;
 
 import static br.com.covid.brazil.api.util.RotasEnum.DELETE_CONSULTA_BY_ID;
 import static java.lang.String.format;
+import static org.springframework.test.context.jdbc.Sql.ExecutionPhase.BEFORE_TEST_METHOD;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-@Sql(value = "classpath:sql/InserirDadosFuncional.sql", executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD)
+@Sql(value = "classpath:sql/InserirDadosFuncional.sql", executionPhase = BEFORE_TEST_METHOD)
 class DeletarDadosCovidFuncionalTest extends BaseTestFuncional {
 
     @Test

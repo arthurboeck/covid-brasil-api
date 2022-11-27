@@ -21,7 +21,7 @@ class PersistirDadosCovidFuncionalTest extends BaseTestFuncional {
         getMvc().perform(post(PERSISTIR_DADOS_COVID_BRASIL_IO.getUrl())
                         .contentType(MediaType.APPLICATION_JSON)
                         .param(UF_PARAM_BODY, RS_PARAM)
-                        .param(MUNICIPIO_PARAM_BODY, ALEGRE_PARAM))
+                        .param(MUNICIPIO_PARAM_BODY, ALEGRETE_PARAM))
                 .andExpect(status().isCreated())
                 .andExpect(assertBodyDefaultData(retornoSucesso));
     }

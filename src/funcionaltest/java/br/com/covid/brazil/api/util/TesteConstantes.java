@@ -19,6 +19,6 @@ public class TesteConstantes {
     public static final String NOVOS_CASOS_BODY = "novosCasos";
     public static final String NOVAS_MORTES_BODY = "novasMortes";
 
-    public static final String ALEGRE_PARAM = "Alegrete";
+    public static final String ALEGRETE_PARAM = "Alegrete";
     public static final String RS_PARAM = "RS";
 }
