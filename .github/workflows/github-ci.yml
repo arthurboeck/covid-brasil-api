@@ -20,7 +20,7 @@ jobs:
         uses: actions/setup-java@v3
         with:
           java-version: '11'
-          distribution: 'oracle'
+          distribution: 'temurin'
           cache: maven
       - name: Running Unit Tests with Maven
         run: mvn test
@@ -34,7 +34,7 @@ jobs:
         uses: actions/setup-java@v3
         with:
           java-version: '11'
-          distribution: 'oracle'
+          distribution: 'temurin'
           cache: maven
       - name: Running Functional Tests with Maven
         run: mvn clean test -Pfunctional-test surefire-report:report site
@@ -62,7 +62,7 @@ jobs:
         uses: actions/setup-java@v3
         with:
           java-version: '11'
-          distribution: 'oracle'
+          distribution: 'temurin'
           cache: maven
       - name: Cache SonarCloud packages
         uses: actions/cache@v1
